@@ -19,9 +19,11 @@ public class RobotV2 {
     public SimpleServo ExtRight;
     public SimpleServo ExtLeft;
     public SimpleServo OuttakeRightWrist;
+    public SimpleServo OuttakeRotation;
 
     public SimpleServo OuttakeRight;
     public SimpleServo OuttakeLeft;
+    public SimpleServo OuttakeClaw;
 
     public SimpleServo IntakeClaw;
 
@@ -44,6 +46,8 @@ public class RobotV2 {
         OuttakeLeft = new SimpleServo(hwMap, "OLA", 0.0, 1.0);
 
         IntakeClaw = new SimpleServo(hwMap,"IC", 0.0, 1.0 );
+        OuttakeRotation = new SimpleServo(hwMap,"Orot",0.0,1.0);
+        OuttakeClaw = new SimpleServo(hwMap,"Oclaw",0.0,1.0 );
 
 
 
