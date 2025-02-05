@@ -51,7 +51,6 @@ public class TeleOpV2  extends LinearOpMode {
             if (gamepad2Ex.getButton(GamepadKeys.Button.LEFT_BUMPER)) {
                 robot.IntakeClaw.setPosition(1);
                 TimeUnit.MILLISECONDS.sleep(500);
-//              Thread.sleep(1000);
                 robot.V4B.setPosition(0.73);
                 robot.Coax.setPosition(0.14);
             } else if (gamepad2Ex.getButton(GamepadKeys.Button.RIGHT_BUMPER)) {
@@ -61,7 +60,6 @@ public class TeleOpV2  extends LinearOpMode {
 
             }
             if (gamepad2Ex.getButton(GamepadKeys.Button.DPAD_LEFT)) {
-                robot.IntakeClaw.setPosition(0);
                 robot.V4B.setPosition(0.73);
                 robot.Coax.setPosition(0.735);
                 extpos = 0.55;
@@ -113,8 +111,11 @@ public class TeleOpV2  extends LinearOpMode {
 
 
 
+
             robot.ExtLeft.setPosition(extpos);
             robot.ExtRight.setPosition(1 - extpos);
+
+
 
             if (extpos > 1) {
                 extpos = 1;
@@ -123,8 +124,7 @@ public class TeleOpV2  extends LinearOpMode {
             }
 
            // telemetry.addData("Extension Position Variable", extpos);
-            //telemetry.update();
-
+            telemetry.addData("Extension Left Position", robot.ExtLeft.getPosition());
             telemetry.addData("Extension Right Position", robot.ExtRight.getPosition());
             telemetry.update();
 
