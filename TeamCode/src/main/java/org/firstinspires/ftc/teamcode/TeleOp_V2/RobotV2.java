@@ -51,7 +51,7 @@ public class RobotV2 {
 
 
 
-//        OuttakeRightWrist = new SimpleServo(hwMap, "ORW", 0.0, 1.0);
+        OuttakeRightWrist = new SimpleServo(hwMap, "ORW", 0.0, 1.0);
 
         LiftLeft = new MotorEx(hwMap, "LiftLeft");
         LiftLeft.setRunMode(Motor.RunMode.RawPower);

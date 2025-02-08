@@ -73,17 +73,8 @@ public class TeleOpV2  extends LinearOpMode {
             } else {
                 robot.IntakeClaw.setPosition(0);
             }
-            if (gamepad1Ex.getButton(GamepadKeys.Button.A)) {
-                robot.OuttakeLeft.setPosition(1);
-                robot.OuttakeRight.setPosition(0);
-            }
-            if (gamepad1Ex.getButton(GamepadKeys.Button.RIGHT_BUMPER)){
-                robot.OuttakeLeft.setPosition(0.75);
-                robot.OuttakeRight.setPosition(0.25);
 
 
-
-            }
 
 
 
@@ -108,27 +99,32 @@ public class TeleOpV2  extends LinearOpMode {
             }
 
             if (gamepad1Ex.getButton(GamepadKeys.Button.DPAD_DOWN)) {
+                robot.OuttakeRightWrist.setPosition(0);
                 robot.OuttakeRotation.setPosition(1);
-                robot.OuttakeLeft.setPosition(1);
-                robot.OuttakeRight.setPosition(0);
+                robot.OuttakeLeft.setPosition(0.75);
+                robot.OuttakeRight.setPosition(0.25);
             } else if (gamepad1Ex.getButton(GamepadKeys.Button.DPAD_UP)) {
+                robot.OuttakeRightWrist.setPosition(1);
                 robot.OuttakeRotation.setPosition(0);
                 robot.OuttakeLeft.setPosition(0);
                 robot.OuttakeRight.setPosition(1);
             }
-            if (gamepad1Ex.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER)>0.1){
+            if (gamepad1Ex.getButton(GamepadKeys.Button.A)){
                 robot.OuttakeClaw.setPosition(1);
-            } else {
+            }
+            if (gamepad1Ex.getButton(GamepadKeys.Button.B)){
                 robot.OuttakeClaw.setPosition(0);
             }
 
-            if(gamepad1.a){
-                robot.ExtLeft.setPosition(0);
-                robot.ExtRight.setPosition(1);
+            if(gamepad2Ex.getButton(GamepadKeys.Button.A)){
+               extpos = 0.7;
+                // robot.ExtLeft.setPosition(0);
+                //robot.ExtRight.setPosition(1);
             }
-            if(gamepad1.b){
-                robot.ExtLeft.setPosition(0.2);
-                robot.ExtRight.setPosition(0.8);
+            if(gamepad2Ex.getButton(GamepadKeys.Button.B)){
+                extpos = 0.5;
+                //robot.ExtLeft.setPosition(0.2);
+                //robot.ExtRight.setPosition(0.8);
             }
 
 
