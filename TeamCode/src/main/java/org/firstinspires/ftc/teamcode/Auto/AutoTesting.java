@@ -5,20 +5,12 @@ import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
-import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
-import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
-import org.firstinspires.ftc.teamcode.Common.Claw;
-import org.firstinspires.ftc.teamcode.Common.Extension;
-import org.firstinspires.ftc.teamcode.Common.Fourbar;
-import org.firstinspires.ftc.teamcode.Common.Lift;
-import org.firstinspires.ftc.teamcode.Common.Rotation;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 @Config
@@ -55,7 +47,7 @@ public class AutoTesting extends LinearOpMode {
             Pose3D result = limelight.getLatestResult().getBotpose();
             Pose2d endPose = new Pose2d(result.getPosition().x, result.getPosition().y, Math.toRadians(result.getOrientation().getYaw()));
             TrajectoryActionBuilder correction = drive.actionBuilder(endPose)
-                    .splineToLinearHeading(new Pose2d(5, -40, Math.toRadians(70)), Math.toRadians(70));
+                    .splineToLinearHeading(new Pose2d(5, -50, Math.toRadians(70)), Math.toRadians(0));
             Action correctionA = correction.build();
 
             Actions.runBlocking(

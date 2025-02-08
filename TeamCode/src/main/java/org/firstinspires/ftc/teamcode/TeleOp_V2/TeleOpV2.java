@@ -3,11 +3,11 @@ package org.firstinspires.ftc.teamcode.TeleOp_V2;
 import com.arcrobotics.ftclib.drivebase.MecanumDrive;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
-import com.arcrobotics.ftclib.util.Timing;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import java.util.concurrent.TimeUnit;
+
 
 @TeleOp(name = "TeleOp V2")
 public class TeleOpV2  extends LinearOpMode {
@@ -33,6 +33,8 @@ public class TeleOpV2  extends LinearOpMode {
         clawMoving = false;
         robot.IntakeClaw.setPosition(0.1);
     }
+    //gamepad1, right bumber goes to close than open
+
 
 
     @Override
@@ -56,7 +58,9 @@ public class TeleOpV2  extends LinearOpMode {
             } else if (gamepad2Ex.getButton(GamepadKeys.Button.RIGHT_BUMPER)) {
                 robot.Coax.setPosition(0.8);
                 robot.V4B.setPosition(0.2);
-
+            }
+            if (gamepad2Ex.getButton(GamepadKeys.Button.LEFT_STICK_BUTTON)){
+                robot.Coax.setPosition(0.5);
 
             }
             if (gamepad2Ex.getButton(GamepadKeys.Button.DPAD_LEFT)) {
@@ -73,6 +77,15 @@ public class TeleOpV2  extends LinearOpMode {
                 robot.OuttakeLeft.setPosition(1);
                 robot.OuttakeRight.setPosition(0);
             }
+            if (gamepad1Ex.getButton(GamepadKeys.Button.RIGHT_BUMPER)){
+                robot.OuttakeLeft.setPosition(0.75);
+                robot.OuttakeRight.setPosition(0.25);
+
+
+
+            }
+
+
 
             if (gamepad2Ex.getLeftY() > 0.1) { // Slides UP
                 robot.LiftLeft.set(-1);
@@ -109,11 +122,19 @@ public class TeleOpV2  extends LinearOpMode {
                 robot.OuttakeClaw.setPosition(0);
             }
 
+            if(gamepad1.a){
+                robot.ExtLeft.setPosition(0);
+                robot.ExtRight.setPosition(1);
+            }
+            if(gamepad1.b){
+                robot.ExtLeft.setPosition(0.2);
+                robot.ExtRight.setPosition(0.8);
+            }
 
 
 
-            robot.ExtLeft.setPosition(extpos);
-            robot.ExtRight.setPosition(1 - extpos);
+//            robot.ExtLeft.setPosition(extpos);
+//            robot.ExtRight.setPosition(1 - extpos);
 
 
 

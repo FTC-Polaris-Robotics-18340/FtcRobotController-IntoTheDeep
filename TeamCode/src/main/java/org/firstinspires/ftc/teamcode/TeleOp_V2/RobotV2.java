@@ -3,10 +3,7 @@ package org.firstinspires.ftc.teamcode.TeleOp_V2;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
-import com.arcrobotics.ftclib.hardware.motors.MotorGroup;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
-import org.firstinspires.ftc.teamcode.Common.Constants;
 
 public class RobotV2 {
     public MotorEx FrontLeft;
@@ -25,6 +22,7 @@ public class RobotV2 {
     public SimpleServo OuttakeLeft;
     public SimpleServo OuttakeClaw;
 
+
     public SimpleServo IntakeClaw;
 
     public MotorEx LiftRight;
@@ -38,6 +36,8 @@ public class RobotV2 {
 
         Coax = new SimpleServo(hwMap, "ICoax", 0.0, 1.0);
         V4B = new SimpleServo(hwMap, "IV4B", 0.0, 1.0);
+
+
 
         ExtLeft = new SimpleServo(hwMap, "ExtL", 0.0, 0.5);
         ExtRight = new SimpleServo(hwMap, "ExtR", 0.0, 0.5);
