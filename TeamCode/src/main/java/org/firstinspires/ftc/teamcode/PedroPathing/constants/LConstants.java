@@ -1,4 +1,4 @@
-package pedroPathing.constants;
+package org.firstinspires.ftc.teamcode.PedroPathing.constants;
 
 import com.pedropathing.localization.*;
 import com.pedropathing.localization.constants.*;
@@ -11,9 +11,9 @@ public class LConstants {
         ThreeWheelConstants.leftY = 1;
         ThreeWheelConstants.rightY = -1;
         ThreeWheelConstants.strafeX = -2.5;
-        ThreeWheelConstants.leftEncoder_HardwareMapName = "leftFront";
-        ThreeWheelConstants.rightEncoder_HardwareMapName = "rightRear";
-        ThreeWheelConstants.strafeEncoder_HardwareMapName = "rightFront";
+        ThreeWheelConstants.leftEncoder_HardwareMapName = "BR";
+        ThreeWheelConstants.rightEncoder_HardwareMapName = "FL";
+        ThreeWheelConstants.strafeEncoder_HardwareMapName = "FR";
         ThreeWheelConstants.leftEncoderDirection = Encoder.REVERSE;
         ThreeWheelConstants.rightEncoderDirection = Encoder.REVERSE;
         ThreeWheelConstants.strafeEncoderDirection = Encoder.FORWARD;

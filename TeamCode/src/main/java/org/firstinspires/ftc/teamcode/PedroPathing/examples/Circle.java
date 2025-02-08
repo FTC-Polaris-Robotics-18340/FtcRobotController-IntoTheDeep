@@ -1,4 +1,4 @@
-package pedroPathing.examples;
+package org.firstinspires.ftc.teamcode.PedroPathing.examples;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
