@@ -25,6 +25,7 @@ public class RobotV2 {
 
     public SimpleServo IntakeClaw;
 
+    public SimpleServo IntakeRotation;
     public MotorEx LiftRight;
     public MotorEx LiftLeft;
 
@@ -45,12 +46,10 @@ public class RobotV2 {
         OuttakeRight = new SimpleServo(hwMap, "ORA", 0.0, 1.0);
         OuttakeLeft = new SimpleServo(hwMap, "OLA", 0.0, 1.0);
 
+        IntakeRotation = new SimpleServo(hwMap, "Irot",0.0,1.0);
         IntakeClaw = new SimpleServo(hwMap,"IC", 0.0, 1.0 );
         OuttakeRotation = new SimpleServo(hwMap,"Orot",0.0,1.0);
         OuttakeClaw = new SimpleServo(hwMap,"Oclaw",0.0,1.0 );
-
-
-
         OuttakeRightWrist = new SimpleServo(hwMap, "ORW", 0.0, 1.0);
 
         LiftLeft = new MotorEx(hwMap, "LiftLeft");

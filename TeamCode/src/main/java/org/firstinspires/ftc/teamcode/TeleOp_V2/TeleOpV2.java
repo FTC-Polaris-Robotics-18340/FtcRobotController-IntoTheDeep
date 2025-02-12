@@ -50,29 +50,9 @@ public class TeleOpV2  extends LinearOpMode {
                     true
             );
 
-            if (gamepad2Ex.getButton(GamepadKeys.Button.LEFT_BUMPER)) {
-                robot.IntakeClaw.setPosition(1);
-                TimeUnit.MILLISECONDS.sleep(500);
-                robot.V4B.setPosition(0.73);
-                robot.Coax.setPosition(0.14);
-            } else if (gamepad2Ex.getButton(GamepadKeys.Button.RIGHT_BUMPER)) {
-                robot.Coax.setPosition(0.8);
-                robot.V4B.setPosition(0.2);
-            }
-            if (gamepad2Ex.getButton(GamepadKeys.Button.LEFT_STICK_BUTTON)){
-                robot.Coax.setPosition(0.5);
 
-            }
-            if (gamepad2Ex.getButton(GamepadKeys.Button.DPAD_LEFT)) {
-                robot.V4B.setPosition(0.73);
-                robot.Coax.setPosition(0.735);
-                extpos = 0.55;
-            }
-            if (gamepad2Ex.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1) {
-                robot.IntakeClaw.setPosition(1);
-            } else {
-                robot.IntakeClaw.setPosition(0);
-            }
+
+
 
 
 
@@ -92,19 +72,19 @@ public class TeleOpV2  extends LinearOpMode {
             telemetry.addData("Extension Left Position", robot.ExtLeft.getPosition());
 
 
-            if (gamepad2Ex.getRightY() > 0.1) { // Extension Out
+            /*if (gamepad2Ex.getRightY() > 0.1) { // Extension Out
                 extpos = extpos + 0.005;
             } else if (gamepad2Ex.getRightY() < -0.1) { // Extension In
                 extpos = extpos - 0.005;
-            }
+            }*/
 
             if (gamepad1Ex.getButton(GamepadKeys.Button.DPAD_DOWN)) {
-                robot.OuttakeRightWrist.setPosition(0);
-                robot.OuttakeRotation.setPosition(1);
-                robot.OuttakeLeft.setPosition(0.75);
-                robot.OuttakeRight.setPosition(0.25);
+                robot.OuttakeRightWrist.setPosition(0.3);
+                robot.OuttakeRotation.setPosition(0.55);
+                robot.OuttakeLeft.setPosition(1);
+                robot.OuttakeRight.setPosition(0);
             } else if (gamepad1Ex.getButton(GamepadKeys.Button.DPAD_UP)) {
-                robot.OuttakeRightWrist.setPosition(1);
+                robot.OuttakeRightWrist.setPosition(0.2);
                 robot.OuttakeRotation.setPosition(0);
                 robot.OuttakeLeft.setPosition(0);
                 robot.OuttakeRight.setPosition(1);
@@ -115,22 +95,37 @@ public class TeleOpV2  extends LinearOpMode {
             if (gamepad1Ex.getButton(GamepadKeys.Button.B)){
                 robot.OuttakeClaw.setPosition(0);
             }
+            if (gamepad2Ex.getButton(GamepadKeys.Button.X)){
+                robot.IntakeRotation.setPosition(1);
+            }
+            if (gamepad2Ex.getButton(GamepadKeys.Button.Y)){
+                robot.IntakeRotation.setPosition(0);
+            }
 
             if(gamepad2Ex.getButton(GamepadKeys.Button.A)){
-               extpos = 0.7;
-                // robot.ExtLeft.setPosition(0);
-                //robot.ExtRight.setPosition(1);
+                robot.Coax.setPosition(1);
+                robot.V4B.setPosition(0.57);
+                TimeUnit.MILLISECONDS.sleep(500);
+                robot.IntakeClaw.setPosition(1);
+                TimeUnit.MILLISECONDS.sleep(250);
+                robot.V4B.setPosition(0.4);
+                extpos = 0.7;
+
             }
+
             if(gamepad2Ex.getButton(GamepadKeys.Button.B)){
-                extpos = 0.5;
+                robot.IntakeClaw.setPosition(0);
+                robot.Coax.setPosition(0.9);
+                robot.V4B.setPosition(0.4);
+                extpos = 0;
                 //robot.ExtLeft.setPosition(0.2);
                 //robot.ExtRight.setPosition(0.8);
             }
 
 
 
-//            robot.ExtLeft.setPosition(extpos);
-//            robot.ExtRight.setPosition(1 - extpos);
+            robot.ExtLeft.setPosition(extpos);
+            robot.ExtRight.setPosition(1 - extpos);
 
 
 
