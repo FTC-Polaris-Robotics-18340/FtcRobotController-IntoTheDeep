@@ -108,3 +108,32 @@ public class RobotV2 {
 //  3: IClaw - Intake Claw
 //  4: IV4B - Intake Virtual 4 Bar
 //  5: ExtR - Extension Right
+
+/* NEW CONFIG(regionals)
+CH:
+    Motors:
+        0: FR
+        1: BR
+        2: FL
+        3: Bl
+    Servos:
+        0:OLA
+        1:Orot
+        2:Oclaw
+        4:ORW
+        5:ORA
+EH:
+    Motors:
+        2:LiftRight
+        3:LiftLeft
+    Servos:
+        0:ICoax
+        1:Iclaw
+        2:ExtL
+        3:ExtR
+        4:IV4B
+        5:Irot
+
+
+
+*/
