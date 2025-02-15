@@ -61,15 +61,19 @@ public class RobotV2 {
         LiftRight.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 
         FrontLeft = new MotorEx(hwMap, "FL", Motor.GoBILDA.RPM_312);
+        FrontLeft.setInverted(true);
         FrontLeft.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 
         FrontRight = new MotorEx(hwMap, "FR", Motor.GoBILDA.RPM_312);
+        FrontRight.setInverted(true);
         FrontRight.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 
         BackLeft = new MotorEx(hwMap, "BL", Motor.GoBILDA.RPM_312);
+        BackLeft.setInverted(true);
         BackLeft.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 
         BackRight = new MotorEx(hwMap, "BR", Motor.GoBILDA.RPM_312);
+        BackRight.setInverted(true);
         BackRight.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 
 
