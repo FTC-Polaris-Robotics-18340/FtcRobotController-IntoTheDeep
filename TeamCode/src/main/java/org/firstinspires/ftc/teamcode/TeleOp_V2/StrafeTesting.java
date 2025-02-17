@@ -28,9 +28,9 @@ public class StrafeTesting extends LinearOpMode {
 
         while (opModeIsActive()){
             FrontLeft.setPower(-0.5);
-            BackRight.setPower(-0.5);
+            BackRight.setPower(-0.55);
             FrontRight.setPower(0.5);
-            BackLeft.setPower(0.5);
+            BackLeft.setPower(0.55);
         }
     }
 }

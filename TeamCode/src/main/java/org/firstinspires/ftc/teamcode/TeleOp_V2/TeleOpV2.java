@@ -50,9 +50,9 @@ public class TeleOpV2  extends LinearOpMode {
 
         while (opModeIsActive()) {
             drive.driveRobotCentric(
-                    -gamepad1Ex.getLeftX(),
-                    -gamepad1Ex.getLeftY(),
-                    -gamepad1Ex.getRightX(),
+                    gamepad1Ex.getLeftX(),
+                    gamepad1Ex.getLeftY(),
+                    gamepad1Ex.getRightX(),
                     true
             );
 
