@@ -108,10 +108,10 @@ public class TeleOpV2  extends LinearOpMode {
                     robot.OuttakeRotation.setPosition(0.7);
                 }
                 if (gamepad1Ex.getButton(GamepadKeys.Button.A)) {
-                    robot.OuttakeClaw.setPosition(1);
+                    robot.OuttakeClaw.setPosition(0.6);
                 }
                 if (gamepad1Ex.getButton(GamepadKeys.Button.B)) {
-                    robot.OuttakeClaw.setPosition(0);
+                    robot.OuttakeClaw.setPosition(0.4);
                 }
                 if (gamepad2Ex.getButton(GamepadKeys.Button.X)) {
                     robot.IntakeRotation.setPosition(0.35);
