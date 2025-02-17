@@ -16,6 +16,7 @@ public class RobotV2 {
     public SimpleServo ExtRight;
     public SimpleServo ExtLeft;
     public SimpleServo OuttakeRightWrist;
+    public SimpleServo OuttakeLeftWrist;
     public SimpleServo OuttakeRotation;
 
     public SimpleServo OuttakeRight;
@@ -48,9 +49,12 @@ public class RobotV2 {
 
         IntakeRotation = new SimpleServo(hwMap, "Irot",0.0,1.0);
         IntakeClaw = new SimpleServo(hwMap,"IC", 0.0, 1.0 );
+
         OuttakeRotation = new SimpleServo(hwMap,"Orot",0.0,1.0);
         OuttakeClaw = new SimpleServo(hwMap,"Oclaw",0.0,1.0 );
+
         OuttakeRightWrist = new SimpleServo(hwMap, "ORW", 0.0, 1.0);
+        OuttakeLeftWrist = new SimpleServo(hwMap, "OLW", 0.0, 1.0);
 
         LiftLeft = new MotorEx(hwMap, "LiftLeft");
         LiftLeft.setRunMode(Motor.RunMode.RawPower);
@@ -61,15 +65,19 @@ public class RobotV2 {
         LiftRight.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 
         FrontLeft = new MotorEx(hwMap, "FL", Motor.GoBILDA.RPM_312);
+        FrontLeft.setInverted(true);
         FrontLeft.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 
         FrontRight = new MotorEx(hwMap, "FR", Motor.GoBILDA.RPM_312);
+        FrontRight.setInverted(true);
         FrontRight.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 
         BackLeft = new MotorEx(hwMap, "BL", Motor.GoBILDA.RPM_312);
+        BackLeft.setInverted(true);
         BackLeft.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
 
         BackRight = new MotorEx(hwMap, "BR", Motor.GoBILDA.RPM_312);
+        BackRight.setInverted(true);
         BackRight.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
     }
 }
@@ -99,3 +107,33 @@ public class RobotV2 {
 //  3: IClaw - Intake Claw
 //  4: IV4B - Intake Virtual 4 Bar
 //  5: ExtR - Extension Right
+
+/* NEW CONFIG(regionals)
+CH:
+    Motors:
+        0: FR
+        1: BR
+        2: FL
+        3: Bl
+    Servos:
+        0:OLA
+        1:Orot
+        2:Oclaw
+        3:OLW
+        4:ORW
+        5:ORA
+EH:
+    Motors:
+        2:LiftRight
+        3:LiftLeft
+    Servos:
+        0:ICoax
+        1:Iclaw
+        2:ExtL
+        3:ExtR
+        4:IV4B
+        5:Irot
+
+
+
+*/

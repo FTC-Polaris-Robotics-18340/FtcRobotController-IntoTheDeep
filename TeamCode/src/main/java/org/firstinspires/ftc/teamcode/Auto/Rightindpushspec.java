@@ -18,6 +18,7 @@ import org.firstinspires.ftc.teamcode.Common.Rotation;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 
+
 @Config
 @Autonomous(name = "Rightindpushspec", group = "Autonomous")
 public class Rightindpushspec extends LinearOpMode {
@@ -59,6 +60,7 @@ public class Rightindpushspec extends LinearOpMode {
                 .setTangent(Math.toRadians(270))
                 .splineToLinearHeading(new Pose2d(44, -39, Math.toRadians(270)), Math.toRadians(270))
                 .build();
+                // Goes to the
         TrajectoryActionBuilder tab2 = drive.actionBuilder(new Pose2d(44, -43, Math.toRadians(270)))
                 .setTangent(Math.toRadians(180))
                 .splineToLinearHeading(new Pose2d(-4, -41, Math.toRadians(87.5)), Math.toRadians(90));
