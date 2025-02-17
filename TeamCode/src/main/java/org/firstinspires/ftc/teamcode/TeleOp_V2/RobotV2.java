@@ -16,6 +16,7 @@ public class RobotV2 {
     public SimpleServo ExtRight;
     public SimpleServo ExtLeft;
     public SimpleServo OuttakeRightWrist;
+    public SimpleServo OuttakeLeftWrist;
     public SimpleServo OuttakeRotation;
 
     public SimpleServo OuttakeRight;
@@ -48,9 +49,12 @@ public class RobotV2 {
 
         IntakeRotation = new SimpleServo(hwMap, "Irot",0.0,1.0);
         IntakeClaw = new SimpleServo(hwMap,"IC", 0.0, 1.0 );
+
         OuttakeRotation = new SimpleServo(hwMap,"Orot",0.0,1.0);
         OuttakeClaw = new SimpleServo(hwMap,"Oclaw",0.0,1.0 );
+
         OuttakeRightWrist = new SimpleServo(hwMap, "ORW", 0.0, 1.0);
+        OuttakeLeftWrist = new SimpleServo(hwMap, "OLW", 0.0, 1.0);
 
         LiftLeft = new MotorEx(hwMap, "LiftLeft");
         LiftLeft.setRunMode(Motor.RunMode.RawPower);
@@ -120,6 +124,7 @@ CH:
         0:OLA
         1:Orot
         2:Oclaw
+        3:OLW
         4:ORW
         5:ORA
 EH:
