@@ -23,14 +23,14 @@ public class Extension {
         ExtensionRight = new SimpleServo(hardwareMap, "ExtR", 0, 0.5);
     }
 
-    public Action Extend (){
+    public Action Retract (){
         return new Action (){
             private boolean initialized = false;
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 ExtensionRight.setPosition(0.7);
                 ExtensionLeft.setPosition(0.3);
-                return true;
+                return false;
             }
 
         };
@@ -38,14 +38,14 @@ public class Extension {
 
     }
 
-    public Action Retract (){
+    public Action Extend (){
         return new Action (){
             private boolean initialized = false;
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 ExtensionRight.setPosition(1);
                 ExtensionLeft.setPosition(0);
-                return true;
+                return false;
             }
 
         };
