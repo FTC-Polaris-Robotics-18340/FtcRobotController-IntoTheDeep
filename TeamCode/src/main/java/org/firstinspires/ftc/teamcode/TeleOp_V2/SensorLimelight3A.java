@@ -39,12 +39,8 @@ import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
-import org.firstinspires.ftc.robotcore.external.navigation.Position;
 
 import java.util.List;
 
@@ -70,28 +66,15 @@ import java.util.List;
  *   and the ip address the Limelight device assigned the Control Hub and which is displayed in small text
  *   below the name of the Limelight on the top level configuration screen.
  */
-@TeleOp(name = "LimelightTest", group = "Sensor")
-public class LimelightTest extends LinearOpMode {
+@TeleOp(name = "Sensor: Limelight3A", group = "Sensor")
+public class SensorLimelight3A extends LinearOpMode {
 
     private Limelight3A limelight;
-    public DcMotorEx leftFront, leftBack, rightBack, rightFront;
-    double targetX;
-    double targetY;
-    double targetYaw;
 
     @Override
     public void runOpMode() throws InterruptedException
     {
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
-        leftFront = hardwareMap.get(DcMotorEx.class, "FL");
-        leftBack = hardwareMap.get(DcMotorEx.class, "BL");
-        rightBack = hardwareMap.get(DcMotorEx.class, "BR");
-        rightFront = hardwareMap.get(DcMotorEx.class, "FR");
-
-        targetX = 0;
-        targetY = -36;
-        targetYaw = 90;
-
 
         telemetry.setMsTransmissionInterval(11);
 
@@ -118,36 +101,51 @@ public class LimelightTest extends LinearOpMode {
             LLResult result = limelight.getLatestResult();
             if (result != null) {
                 // Access general information
-                Pose3D botPose = result.getBotpose();
-//                double captureLatency = result.getCaptureLatency();
-//                double targetingLatency = result.getTargetingLatency();
-//                double parseLatency = result.getParseLatency();
-//                telemetry.addData("LL Latency", captureLatency + targetingLatency);
-//                telemetry.addData("Parse Latency", parseLatency);
-//                telemetry.addData("PythonOutput", java.util.Arrays.toString(result.getPythonOutput()));
+                Pose3D botpose = result.getBotpose();
+                double captureLatency = result.getCaptureLatency();
+                double targetingLatency = result.getTargetingLatency();
+                double parseLatency = result.getParseLatency();
+                telemetry.addData("LL Latency", captureLatency + targetingLatency);
+                telemetry.addData("Parse Latency", parseLatency);
+                telemetry.addData("PythonOutput", java.util.Arrays.toString(result.getPythonOutput()));
 
                 if (result.isValid()) {
-//                    telemetry.addData("tx", result.getTx());
-//                    telemetry.addData("txnc", result.getTxNC());
-//                    telemetry.addData("ty", result.getTy());
-//                    telemetry.addData("tync", result.getTyNC());
+                    telemetry.addData("tx", result.getTx());
+                    telemetry.addData("txnc", result.getTxNC());
+                    telemetry.addData("ty", result.getTy());
+                    telemetry.addData("tync", result.getTyNC());
 
-                    telemetry.addData("BotPose", botPose.toString());
+                    telemetry.addData("Botpose", botpose.toString());
 
-                    double x = metersToInches(botPose.getPosition().x);
-                    double y = metersToInches(botPose.getPosition().y);
-                    double yaw = botPose.getOrientation().getYaw();
+                    // Access barcode results
+                    List<LLResultTypes.BarcodeResult> barcodeResults = result.getBarcodeResults();
+                    for (LLResultTypes.BarcodeResult br : barcodeResults) {
+                        telemetry.addData("Barcode", "Data: %s", br.getData());
+                    }
 
-                    double errorX = x - targetX;
-                    double errorY = y - targetY;
-                    double errorYaw = yaw - targetYaw;
+                    // Access classifier results
+                    List<LLResultTypes.ClassifierResult> classifierResults = result.getClassifierResults();
+                    for (LLResultTypes.ClassifierResult cr : classifierResults) {
+                        telemetry.addData("Classifier", "Class: %s, Confidence: %.2f", cr.getClassName(), cr.getConfidence());
+                    }
 
-                    telemetry.addLine("Error:");
-                    telemetry.addData("\t X:", String.valueOf(errorX));
-                    telemetry.addData("\t Y :", String.valueOf(errorY));
-                    telemetry.addData("\t Yaw:",String.valueOf(errorYaw));
+                    // Access detector results
+                    List<LLResultTypes.DetectorResult> detectorResults = result.getDetectorResults();
+                    for (LLResultTypes.DetectorResult dr : detectorResults) {
+                        telemetry.addData("Detector", "Class: %s, Area: %.2f", dr.getClassName(), dr.getTargetArea());
+                    }
 
-                    moveRobot(errorX, errorY, errorYaw);
+                    // Access fiducial results
+                    List<LLResultTypes.FiducialResult> fiducialResults = result.getFiducialResults();
+                    for (LLResultTypes.FiducialResult fr : fiducialResults) {
+                        telemetry.addData("Fiducial", "ID: %d, Family: %s, X: %.2f, Y: %.2f", fr.getFiducialId(), fr.getFamily(),fr.getTargetXDegrees(), fr.getTargetYDegrees());
+                    }
+
+                    // Access color results
+                    List<LLResultTypes.ColorResult> colorResults = result.getColorResults();
+                    for (LLResultTypes.ColorResult cr : colorResults) {
+                        telemetry.addData("Color", "X: %.2f, Y: %.2f", cr.getTargetXDegrees(), cr.getTargetYDegrees());
+                    }
                 }
             } else {
                 telemetry.addData("Limelight", "No data available");
@@ -157,39 +155,4 @@ public class LimelightTest extends LinearOpMode {
         }
         limelight.stop();
     }
-
-    private double metersToInches(double meters){
-        return meters * 39.3701;
-    }
-
-    private double inchesToMeters(double inches){
-        return inches / 39.3701;
-    }
-    private void moveRobot(double x, double y, double yaw) {
-        // Calculate wheel powers.
-        yaw = -yaw;
-        double leftFrontPower    =  x -y -yaw;
-        double rightFrontPower   =  x +y +yaw;
-        double leftBackPower     =  x +y -yaw;
-        double rightBackPower    =  x -y +yaw;
-
-        // Normalize wheel powers to be less than 1.0
-        double max = Math.max(Math.abs(leftFrontPower), Math.abs(rightFrontPower));
-        max = Math.max(max, Math.abs(leftBackPower));
-        max = Math.max(max, Math.abs(rightBackPower));
-
-        if (max > 1.0) {
-            leftFrontPower /= max;
-            rightFrontPower /= max;
-            leftBackPower /= max;
-            rightBackPower /= max;
-        }
-
-        // Send powers to the wheels.
-        leftFront.setPower(-leftFrontPower);
-        rightFront.setPower(-rightFrontPower);
-        leftBack.setPower(-leftBackPower);
-        rightBack.setPower(-rightBackPower);
-    }
 }
-

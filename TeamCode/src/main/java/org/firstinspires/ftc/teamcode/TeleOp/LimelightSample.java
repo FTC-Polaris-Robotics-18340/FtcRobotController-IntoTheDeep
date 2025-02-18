@@ -30,7 +30,7 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
 TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-package org.firstinspires.ftc.teamcode.TeleOp_V2;
+package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.LLResultTypes;
@@ -39,12 +39,8 @@ import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
-import org.firstinspires.ftc.robotcore.external.navigation.Position;
 
 import java.util.List;
 
@@ -70,28 +66,16 @@ import java.util.List;
  *   and the ip address the Limelight device assigned the Control Hub and which is displayed in small text
  *   below the name of the Limelight on the top level configuration screen.
  */
-@TeleOp(name = "LimelightTest", group = "Sensor")
-public class LimelightTest extends LinearOpMode {
+@TeleOp(name = "Sensor: Limelight3A Sample", group = "Sensor")
+@Disabled
+public class LimelightSample extends LinearOpMode {
 
     private Limelight3A limelight;
-    public DcMotorEx leftFront, leftBack, rightBack, rightFront;
-    double targetX;
-    double targetY;
-    double targetYaw;
 
     @Override
     public void runOpMode() throws InterruptedException
     {
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
-        leftFront = hardwareMap.get(DcMotorEx.class, "FL");
-        leftBack = hardwareMap.get(DcMotorEx.class, "BL");
-        rightBack = hardwareMap.get(DcMotorEx.class, "BR");
-        rightFront = hardwareMap.get(DcMotorEx.class, "FR");
-
-        targetX = 0;
-        targetY = -36;
-        targetYaw = 90;
-
 
         telemetry.setMsTransmissionInterval(11);
 
@@ -118,36 +102,21 @@ public class LimelightTest extends LinearOpMode {
             LLResult result = limelight.getLatestResult();
             if (result != null) {
                 // Access general information
-                Pose3D botPose = result.getBotpose();
-//                double captureLatency = result.getCaptureLatency();
-//                double targetingLatency = result.getTargetingLatency();
-//                double parseLatency = result.getParseLatency();
-//                telemetry.addData("LL Latency", captureLatency + targetingLatency);
-//                telemetry.addData("Parse Latency", parseLatency);
-//                telemetry.addData("PythonOutput", java.util.Arrays.toString(result.getPythonOutput()));
+                Pose3D botpose = result.getBotpose();
+                double captureLatency = result.getCaptureLatency();
+                double targetingLatency = result.getTargetingLatency();
+                double parseLatency = result.getParseLatency();
+                telemetry.addData("LL Latency", captureLatency + targetingLatency);
+                telemetry.addData("Parse Latency", parseLatency);
+                telemetry.addData("PythonOutput", java.util.Arrays.toString(result.getPythonOutput()));
 
                 if (result.isValid()) {
-//                    telemetry.addData("tx", result.getTx());
-//                    telemetry.addData("txnc", result.getTxNC());
-//                    telemetry.addData("ty", result.getTy());
-//                    telemetry.addData("tync", result.getTyNC());
+                    telemetry.addData("tx", result.getTx());
+                    telemetry.addData("txnc", result.getTxNC());
+                    telemetry.addData("ty", result.getTy());
+                    telemetry.addData("tync", result.getTyNC());
 
-                    telemetry.addData("BotPose", botPose.toString());
-
-                    double x = metersToInches(botPose.getPosition().x);
-                    double y = metersToInches(botPose.getPosition().y);
-                    double yaw = botPose.getOrientation().getYaw();
-
-                    double errorX = x - targetX;
-                    double errorY = y - targetY;
-                    double errorYaw = yaw - targetYaw;
-
-                    telemetry.addLine("Error:");
-                    telemetry.addData("\t X:", String.valueOf(errorX));
-                    telemetry.addData("\t Y :", String.valueOf(errorY));
-                    telemetry.addData("\t Yaw:",String.valueOf(errorYaw));
-
-                    moveRobot(errorX, errorY, errorYaw);
+                    telemetry.addData("Botpose", botpose.toString());
                 }
             } else {
                 telemetry.addData("Limelight", "No data available");
@@ -157,39 +126,4 @@ public class LimelightTest extends LinearOpMode {
         }
         limelight.stop();
     }
-
-    private double metersToInches(double meters){
-        return meters * 39.3701;
-    }
-
-    private double inchesToMeters(double inches){
-        return inches / 39.3701;
-    }
-    private void moveRobot(double x, double y, double yaw) {
-        // Calculate wheel powers.
-        yaw = -yaw;
-        double leftFrontPower    =  x -y -yaw;
-        double rightFrontPower   =  x +y +yaw;
-        double leftBackPower     =  x +y -yaw;
-        double rightBackPower    =  x -y +yaw;
-
-        // Normalize wheel powers to be less than 1.0
-        double max = Math.max(Math.abs(leftFrontPower), Math.abs(rightFrontPower));
-        max = Math.max(max, Math.abs(leftBackPower));
-        max = Math.max(max, Math.abs(rightBackPower));
-
-        if (max > 1.0) {
-            leftFrontPower /= max;
-            rightFrontPower /= max;
-            leftBackPower /= max;
-            rightBackPower /= max;
-        }
-
-        // Send powers to the wheels.
-        leftFront.setPower(-leftFrontPower);
-        rightFront.setPower(-rightFrontPower);
-        leftBack.setPower(-leftBackPower);
-        rightBack.setPower(-rightBackPower);
-    }
 }
-

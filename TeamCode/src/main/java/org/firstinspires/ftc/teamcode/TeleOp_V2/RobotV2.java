@@ -79,11 +79,6 @@ public class RobotV2 {
         BackRight = new MotorEx(hwMap, "BR", Motor.GoBILDA.RPM_312);
         BackRight.setInverted(true);
         BackRight.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
-
-
-
-
-
     }
 }
 
