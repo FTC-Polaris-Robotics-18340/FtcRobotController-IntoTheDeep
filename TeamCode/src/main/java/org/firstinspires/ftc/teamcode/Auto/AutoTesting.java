@@ -113,7 +113,7 @@ public class AutoTesting extends LinearOpMode {
                 .splineToLinearHeading(scoreSpecimenPose, Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel));
 
 
-        Action toBasket = tab1.build();
+        Action toChambers = tab1.build();
         Action pushSample1 = tab2.build();
         Action pushSample2 = tab3.build();
         Action pushSample3 = tab4.build();
@@ -136,7 +136,7 @@ public class AutoTesting extends LinearOpMode {
                 new SequentialAction(
                         new ParallelAction(
                                 extension.Retract(),
-                                toBasket
+                                toChambers
                         ),
                         pushSample1,
                         pushSample2,
