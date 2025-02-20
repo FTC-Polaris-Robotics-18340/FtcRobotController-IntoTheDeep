@@ -17,7 +17,7 @@ public class MeepMeepTesting {
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(90, 65, Math.toRadians(180), Math.toRadians(180), 17)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder((new Pose2d(8, -61, Math.toRadians(90))))
-                        .splineToLinearHeading(new Pose2d(0, -33, Math.toRadians(90)), Math.toRadians(90)) // tab1 Score 1
+                        .splineToLinearHeading(new Pose2d(-10, -33, Math.toRadians(90)), Math.toRadians(90)) // tab1 Score 1
 
                         .setTangent(Math.toRadians(0))                                                           // tab2 push 1
                         .splineToLinearHeading(new Pose2d(34, -36, Math.toRadians(90)), Math.toRadians(0))
@@ -46,25 +46,33 @@ public class MeepMeepTesting {
                         .splineToLinearHeading(new Pose2d(50, -40, Math.toRadians(180)), Math.toRadians(270))
 
                         .setTangent(Math.toRadians(270))                                                          // tab5 turn to pick spec
-                        .splineToLinearHeading(new Pose2d(50, -57, Math.toRadians(90)), Math.toRadians(270))
+                        .splineToLinearHeading(new Pose2d(50, -50, Math.toRadians(90)), Math.toRadians(270))
+
+                        .lineTo(new Vector2d(50, -57))
 
                         .setTangent(Math.toRadians(90))                                                           // tab6 score spec after pick
-                        .splineToLinearHeading(new Pose2d(0, -33, Math.toRadians(90)), Math.toRadians(90))
+                        .splineToLinearHeading(new Pose2d(-7, -33, Math.toRadians(90)), Math.toRadians(90))
 
                         .setTangent(Math.toRadians(270))                                                          // tab7 pick spec
-                        .splineToLinearHeading(new Pose2d(40, -57, Math.toRadians(90)), Math.toRadians(270))
+                        .splineToLinearHeading(new Pose2d(40, -50, Math.toRadians(90)), Math.toRadians(270))
+
+                        .lineTo(new Vector2d(40, -57))
 
                         .setTangent(Math.toRadians(90))                                                          // tab8 score spec
-                        .splineToLinearHeading(new Pose2d(0, -33, Math.toRadians(90)), Math.toRadians(90))
+                        .splineToLinearHeading(new Pose2d(-5, -33, Math.toRadians(90)), Math.toRadians(90))
 
                         .setTangent(Math.toRadians(270))                                                          // tab7 pick spec
-                        .splineToLinearHeading(new Pose2d(40, -57, Math.toRadians(90)), Math.toRadians(270))
+                        .splineToLinearHeading(new Pose2d(40, -50, Math.toRadians(90)), Math.toRadians(270))
+
+                        .lineTo(new Vector2d(40, -57))
 
                         .setTangent(Math.toRadians(90))                                                          // tab8 score spec
-                        .splineToLinearHeading(new Pose2d(0, -33, Math.toRadians(90)), Math.toRadians(90))
+                        .splineToLinearHeading(new Pose2d(-3, -33, Math.toRadians(90)), Math.toRadians(90))
 
                         .setTangent(Math.toRadians(270))                                                          // tab7 pick spec
-                        .splineToLinearHeading(new Pose2d(40, -57, Math.toRadians(90)), Math.toRadians(270))
+                        .splineToLinearHeading(new Pose2d(40, -50, Math.toRadians(90)), Math.toRadians(270))
+
+                        .lineTo(new Vector2d(40, -57))
 
                         .setTangent(Math.toRadians(90))                                                          // tab8 score spec
                         .splineToLinearHeading(new Pose2d(0, -33, Math.toRadians(90)), Math.toRadians(90))

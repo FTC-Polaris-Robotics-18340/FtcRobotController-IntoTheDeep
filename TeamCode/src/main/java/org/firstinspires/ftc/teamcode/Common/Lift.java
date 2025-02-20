@@ -243,4 +243,27 @@ public class Lift {
             }
         };
     }
+
+    public Action slidesToScoreSpec(){
+        return new Action() {
+            private boolean initialized = false;
+            private double startTime;
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet){
+                if (!initialized) {
+                    SlideLeft.set(-1);
+                    SlideRight.set(-1);
+                    startTime = System.currentTimeMillis();
+                    initialized = true;
+                }
+
+                if (System.currentTimeMillis() - startTime > 100) {
+                    SlideLeft.set(-0.02);
+                    SlideRight.set(-0.02);
+                    return false;
+                }
+                return true;
+            }
+        };
+    }
 }
