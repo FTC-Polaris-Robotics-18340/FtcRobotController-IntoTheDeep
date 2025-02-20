@@ -142,7 +142,7 @@ public class TeleOpV2  extends LinearOpMode {
                 if (gamepad2Ex.getButton(GamepadKeys.Button.B)) {
                     robot.Coax.setPosition(0.5);
                     robot.V4B.setPosition(0.4);
-                    extpos = 0;
+                    extpos = 0.2;
                     robot.IntakeClaw.setPosition(0);
                 }
 
@@ -174,7 +174,7 @@ public class TeleOpV2  extends LinearOpMode {
                 if (gamepad2Ex.getButton(GamepadKeys.Button.Y)) {
                     robot.IntakeRotation.setPosition(0);
                 }
-                if (gamepad2Ex.getButton(GamepadKeys.Button.A)) {
+                if (gamepad2Ex.getButton(GamepadKeys.Button.A)) { // intake transfer pos
                     robot.Coax.setPosition(0.5);
                     robot.V4B.setPosition(0.57);
                     TimeUnit.MILLISECONDS.sleep(500);
@@ -182,14 +182,34 @@ public class TeleOpV2  extends LinearOpMode {
                     TimeUnit.MILLISECONDS.sleep(250);
                     robot.V4B.setPosition(0.4);
                     extpos = 0.7;
+                    robot.V4B.setPosition(0);
+                    robot.Coax.setPosition(1);
 
                 }
+                if (gamepad2Ex.getButton(GamepadKeys.Button.DPAD_UP)){ // sweeper action
+                    robot.IntakeClaw.setPosition(0.4);
+                    robot.V4B.setPosition(0.65);
+                    TimeUnit.MILLISECONDS.sleep(500);
+                    robot.IntakeClaw.setPosition(0);
+                    TimeUnit.MILLISECONDS.sleep(100);
+                    robot.V4B.setPosition(0.4);
+                }
 
-                if (gamepad2Ex.getButton(GamepadKeys.Button.B)) {
+                if (gamepad2Ex.getButton(GamepadKeys.Button.B)) { // intake transfer pos
                     robot.Coax.setPosition(0.5);
                     robot.V4B.setPosition(0.4);
-                    extpos = 0;
+                    extpos = 0.2;
                     robot.IntakeClaw.setPosition(0);
+
+                }
+                if(gamepad2Ex.getButton(GamepadKeys.Button.DPAD_DOWN)){
+                    robot.OuttakeClaw.setPosition(1);
+                    if ((robot.OuttakeClaw.getPosition()) >= 0.8){
+                        robot.IntakeClaw.setPosition(0);
+                        extpos = 0.65;
+                        robot.OuttakeRight.setPosition(0.4);
+                        robot.OuttakeLeft.setPosition(0.6);
+                    }
                 }
 
             }
