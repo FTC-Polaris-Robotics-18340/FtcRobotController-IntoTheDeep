@@ -38,7 +38,7 @@ public class LiftV2 {
                     initialized = true;
                 }
 
-                if (System.currentTimeMillis() - startTime > 100) {
+                if (System.currentTimeMillis() - startTime > 150) {
                     SlideLeft.set(-0.02);
                     SlideRight.set(-0.02);
                     return false;

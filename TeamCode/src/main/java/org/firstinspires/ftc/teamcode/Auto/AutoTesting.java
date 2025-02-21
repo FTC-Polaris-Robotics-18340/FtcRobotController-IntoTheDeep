@@ -28,12 +28,11 @@ import org.firstinspires.ftc.teamcode.MecanumDrive;
 @Config
 @Autonomous(name = "AUTO Testing", group = "Autonomous")
 public class AutoTesting extends LinearOpMode {
-
     private Limelight3A limelight;
     private MecanumDrive drive;
 
     public void runOpMode() {
-        Pose2d initialPose = new Pose2d(8, -61, Math.toRadians(90));
+        Pose2d initialPose = new Pose2d(8, -63.5, Math.toRadians(90));
 
         drive = new MecanumDrive(hardwareMap, initialPose);
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
@@ -47,16 +46,16 @@ public class AutoTesting extends LinearOpMode {
 
         Pose2d toBasket_lastPose = new Pose2d(0, -33, Math.toRadians(90));
         Pose2d pushSample3_lastPose = new Pose2d(50, -40, Math.toRadians(180));
-        Pose2d turnToSamplePose = new Pose2d(50, -50, Math.toRadians(90));
-        Pose2d pickSpecimenPose = new Pose2d(40, -50, Math.toRadians(90));
+        Pose2d turnToSamplePose = new Pose2d(48, -37, Math.toRadians(90));
+        Pose2d pickSpecimenPose = new Pose2d(48, -37, Math.toRadians(90));
         Pose2d scoreSpecimenPoseFirst = new Pose2d(0, -33, Math.toRadians(90));
         Pose2d scoreSpecimenPoseSecond = new Pose2d(0, -33, Math.toRadians(90));
         Pose2d scoreSpecimenPoseThird = new Pose2d(0, -33, Math.toRadians(90));
         Pose2d scoreSpecimenPoseFourth = new Pose2d(0, -33, Math.toRadians(90));
 
-        final double minTransVel = 100;
-        final double minProfAccel = -70;
-        final double maxProfAccel = 100;
+        final double minTransVel = 90;
+        final double minProfAccel = -60;
+        final double maxProfAccel = 80;
 
         final double minTransVelStraight = 120;
         final double minProfAccelStraight = -80;
@@ -67,31 +66,31 @@ public class AutoTesting extends LinearOpMode {
 
         TrajectoryActionBuilder tab2 = tab1.endTrajectory().fresh()
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(34, -36, Math.toRadians(90)), Math.toRadians(0), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel)) // new ProfileAccelConstraint(-100, 100)
+                .splineToLinearHeading(new Pose2d(37, -36, Math.toRadians(90)), Math.toRadians(0), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
                 .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(34, -8, Math.toRadians(90)), Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
+                .splineToLinearHeading(new Pose2d(37, -6, Math.toRadians(90)), Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(45,  -8, Math.toRadians(180)), Math.toRadians(0), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
+                .splineToLinearHeading(new Pose2d(45,  -6, Math.toRadians(180)), Math.toRadians(0))
                 .setTangent(Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(45, -44, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
+                .splineToLinearHeading(new Pose2d(45, -48, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
                 .splineToLinearHeading(new Pose2d(45, -40, Math.toRadians(180)), Math.toRadians(270));
 
         TrajectoryActionBuilder tab3 = tab2.endTrajectory().fresh()
                 .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(42, -10, Math.toRadians(180)), Math.toRadians(90), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
+                .splineToLinearHeading(new Pose2d(40, -4, Math.toRadians(180)), Math.toRadians(90), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(54,  -10, Math.toRadians(180)), Math.toRadians(0), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
+                .splineToLinearHeading(new Pose2d(54,  -4, Math.toRadians(180)), Math.toRadians(0), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
                 .setTangent(Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(54, -44, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
+                .splineToLinearHeading(new Pose2d(54, -48, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
                 .splineToLinearHeading(new Pose2d(54, -40, Math.toRadians(180)), Math.toRadians(270));
 
         TrajectoryActionBuilder tab4 = tab3.endTrajectory().fresh()
                 .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(52, -10, Math.toRadians(180)), Math.toRadians(90), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
+                .splineToLinearHeading(new Pose2d(52, -6, Math.toRadians(180)), Math.toRadians(90), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(62,  -10, Math.toRadians(180)), Math.toRadians(0), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
+                .splineToLinearHeading(new Pose2d(62,  -6, Math.toRadians(180)), Math.toRadians(0), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
                 .setTangent(Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(62, -44, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
+                .splineToLinearHeading(new Pose2d(62, -48, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
                 .splineToLinearHeading(pushSample3_lastPose, Math.toRadians(270));
 
         TrajectoryActionBuilder tab5 = tab4.endTrajectory().fresh()
@@ -99,44 +98,48 @@ public class AutoTesting extends LinearOpMode {
                 .splineToLinearHeading(turnToSamplePose, Math.toRadians(270), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel));
 
         TrajectoryActionBuilder tab6 = tab5.endTrajectory().fresh()
-                .lineToY(-57);
+                .lineToY(-51);
 
         TrajectoryActionBuilder tab7 = tab6.endTrajectory().fresh()
-                .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(scoreSpecimenPoseFirst, Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel));
+                .setTangent(Math.toRadians(135))
+                .splineToLinearHeading(new Pose2d(0, -40, Math.toRadians(90)), Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
+                .lineToY(-33);
 
         TrajectoryActionBuilder tab8 = tab7.endTrajectory().fresh()
                 .setTangent(Math.toRadians(270))
                 .splineToLinearHeading(pickSpecimenPose, Math.toRadians(270), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel));
 
         TrajectoryActionBuilder tab9 = tab8.endTrajectory().fresh()
-                .lineToY(-57);
+                .lineToY(-51);
 
         TrajectoryActionBuilder tab10 = tab9.endTrajectory().fresh()
-                .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(scoreSpecimenPoseSecond, Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel));
+                .setTangent(Math.toRadians(135))
+                .splineToLinearHeading(new Pose2d(0, -40, Math.toRadians(90)), Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
+                .lineToY(-33);
 
         TrajectoryActionBuilder tab11 = tab10.endTrajectory().fresh()
                 .setTangent(Math.toRadians(270))
                 .splineToLinearHeading(pickSpecimenPose, Math.toRadians(270), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel));
 
         TrajectoryActionBuilder tab12 = tab11.endTrajectory().fresh()
-                .lineToY(-57);
+                .lineToY(-51);
 
         TrajectoryActionBuilder tab13 = tab12.endTrajectory().fresh()
-                .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(scoreSpecimenPoseThird, Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel));
+                .setTangent(Math.toRadians(135))
+                .splineToLinearHeading(new Pose2d(0, -40, Math.toRadians(90)), Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
+                .lineToY(-33);
 
         TrajectoryActionBuilder tab14 = tab13.endTrajectory().fresh()
                 .setTangent(Math.toRadians(270))
                 .splineToLinearHeading(pickSpecimenPose, Math.toRadians(270), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel));
 
         TrajectoryActionBuilder tab15 = tab14.endTrajectory().fresh()
-                .lineToY(-57);
+                .lineToY(-51);
 
         TrajectoryActionBuilder tab16 = tab15.endTrajectory().fresh()
-                .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(scoreSpecimenPoseFourth, Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel));
+                .setTangent(Math.toRadians(135))
+                .splineToLinearHeading(new Pose2d(0, -40, Math.toRadians(90)), Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
+                .lineToY(-33);
 
 
         Action toChambers = tab1.build();
@@ -201,9 +204,13 @@ public class AutoTesting extends LinearOpMode {
                         ),
 
                         pickSpecimenAfterTurn,
+                        outClaw.ClawClose(),
+
+                        new SleepAction(0.5),
+
                         autoActions.scoreReadyRoutine(),
 
-                        new SleepAction(1),
+                        new SleepAction(2),
 
                         new ParallelAction(
                                 scoreSpecimenFromTurn,
@@ -229,9 +236,13 @@ public class AutoTesting extends LinearOpMode {
                         ),
 
                         pickSpecimenFirstForward,
+                        outClaw.ClawClose(),
+
+                        new SleepAction(0.5),
+
                         autoActions.scoreReadyRoutine(),
 
-                        new SleepAction(1),
+                        new SleepAction(2),
 
                         new ParallelAction(
                                 scoreSpecimenFromPickFirst,
@@ -257,9 +268,13 @@ public class AutoTesting extends LinearOpMode {
                         ),
 
                         pickSpecimenSecondForward,
+                        outClaw.ClawClose(),
+
+                        new SleepAction(0.5),
+
                         autoActions.scoreReadyRoutine(),
 
-                        new SleepAction(1),
+                        new SleepAction(2),
 
                         new ParallelAction(
                                 scoreSpecimenFromPickSecond,
@@ -285,9 +300,13 @@ public class AutoTesting extends LinearOpMode {
                         ),
 
                         pickSpecimenThirdForward,
+                        outClaw.ClawClose(),
+
+                        new SleepAction(0.5),
+
                         autoActions.scoreReadyRoutine(),
 
-                        new SleepAction(1),
+                        new SleepAction(2),
 
                         new ParallelAction(
                                 scoreSpecimenFromPickThird,

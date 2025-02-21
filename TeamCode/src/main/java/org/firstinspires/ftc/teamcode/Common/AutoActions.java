@@ -36,8 +36,8 @@ public class AutoActions {
 
                 OutClawRot.setPosition(0.7); // Out Claw Rot Score Pos ^
 
-                ArmRight.setPosition(0.1);
-                ArmLeft.setPosition(0.9); // Arm Score Spec ^
+                ArmRight.setPosition(0.05);
+                ArmLeft.setPosition(0.95); // Arm Score Spec ^
 
 //                OutClaw.setPosition(0.4); // Out Claw Open
                 return false;
@@ -85,13 +85,13 @@ public class AutoActions {
         return new Action() {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                OutWristRight.setPosition(0.6);
-                OutWristLeft.setPosition(0.4); // Out Wrist Ready Pos ^
+                OutWristRight.setPosition(0.4);
+                OutWristLeft.setPosition(0.6); // Out Wrist Ready Pos ^
 
                 OutClaw.setPosition(1); // Out Claw Close
 
-                ArmRight.setPosition(0.1);
-                ArmLeft.setPosition(0.9); // Arm Score Ready Pos ^
+                ArmRight.setPosition(0);
+                ArmLeft.setPosition(1); // Arm Score Ready Pos ^
 
                 OutClawRot.setPosition(0.7); // Out Claw Rot Score Pos
                 return false;
