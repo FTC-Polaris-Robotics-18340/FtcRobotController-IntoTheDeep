@@ -189,6 +189,7 @@ public class TeleOpV2  extends LinearOpMode {
                     robot.OuttakeClaw.setPosition(0.4);
                     robot.OuttakeRightWrist.setPosition(0);
                     robot.OuttakeLeftWrist.setPosition(1);
+                    robot.IntakeClaw.setPosition(0.95);
                     robot.Coax.setPosition(1);
                     TimeUnit.MILLISECONDS.sleep(750);
                     robot.OuttakeLeft.setPosition(0.88);
