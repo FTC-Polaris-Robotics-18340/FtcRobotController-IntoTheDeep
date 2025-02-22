@@ -12,6 +12,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class LiftV2 {
     MotorEx SlideLeft;
     MotorEx SlideRight;
+    final double uptimeMillis = 150;
 
     public LiftV2 (HardwareMap hardwareMap){
         MotorEx SL = new MotorEx(hardwareMap, "LiftLeft");
@@ -38,7 +39,7 @@ public class LiftV2 {
                     initialized = true;
                 }
 
-                if (System.currentTimeMillis() - startTime > 150) {
+                if (System.currentTimeMillis() - startTime > uptimeMillis) {
                     SlideLeft.set(-0.02);
                     SlideRight.set(-0.02);
                     return false;
@@ -61,7 +62,7 @@ public class LiftV2 {
                     initialized = true;
                 }
 
-                if (System.currentTimeMillis() - startTime > 300) {
+                if (System.currentTimeMillis() - startTime > uptimeMillis) {
                     SlideLeft.set(-0.02);
                     SlideRight.set(-0.02);
                     return false;

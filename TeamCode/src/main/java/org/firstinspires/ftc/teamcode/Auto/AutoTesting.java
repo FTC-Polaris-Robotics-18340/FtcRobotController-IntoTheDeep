@@ -66,14 +66,19 @@ public class AutoTesting extends LinearOpMode {
 
         TrajectoryActionBuilder tab2 = tab1.endTrajectory().fresh()
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(37, -36, Math.toRadians(90)), Math.toRadians(0), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
+                .splineToLinearHeading(new Pose2d(37, -36,
+                        Math.toRadians(90)), Math.toRadians(0))
                 .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(37, -6, Math.toRadians(90)), Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
+                .splineToLinearHeading(new Pose2d(37, -6,
+                        Math.toRadians(90)), Math.toRadians(90))
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(45,  -6, Math.toRadians(180)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(45,  -6,
+                        Math.toRadians(180)), Math.toRadians(0))
                 .setTangent(Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(45, -48, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
-                .splineToLinearHeading(new Pose2d(45, -40, Math.toRadians(180)), Math.toRadians(270));
+                .splineToLinearHeading(new Pose2d(45, -48,
+                        Math.toRadians(180)), Math.toRadians(270))
+                .splineToLinearHeading(new Pose2d(45, -40,
+                        Math.toRadians(180)), Math.toRadians(270));
 
         TrajectoryActionBuilder tab3 = tab2.endTrajectory().fresh()
                 .setTangent(Math.toRadians(90))
@@ -329,13 +334,9 @@ public class AutoTesting extends LinearOpMode {
         if (limelight.getLatestResult() != null && limelight.getLatestResult().isValid()) {
             Pose3D result = limelight.getLatestResult().getBotpose();
 
-            Pose2d endPose = new Pose2d(Limelight.metersToInches(result.getPosition().x), Limelight.metersToInches(result.getPosition().y), Math.toRadians(result.getOrientation().getYaw()));
-
-            telemetry.addData("Result is: ", limelight.getLatestResult().isValid());
-            telemetry.addData("Bot Pose in Pose3d is: ", limelight.getLatestResult().getBotpose().toString());
-            telemetry.addData("Bot Pose in Pose2d is: ", endPose.toString());
-            telemetry.addData("X/Y error", Limelight.distanceBetweenPose(endPose, correctionPose));
-            telemetry.addData("Heading error", Limelight.headingDifferencePose(endPose, correctionPose));
+            Pose2d endPose = new Pose2d(Limelight.metersToInches(result.getPosition().x),
+                    Limelight.metersToInches(result.getPosition().y),
+                    Math.toRadians(result.getOrientation().getYaw()));
 
             if (Limelight.distanceBetweenPose(endPose, correctionPose) > distanceError ||
                     Limelight.headingDifferencePose(endPose, correctionPose) > headingError){

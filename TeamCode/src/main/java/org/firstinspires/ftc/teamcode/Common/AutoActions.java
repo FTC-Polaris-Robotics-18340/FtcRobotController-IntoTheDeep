@@ -85,8 +85,8 @@ public class AutoActions {
         return new Action() {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                OutWristRight.setPosition(0.4);
-                OutWristLeft.setPosition(0.6); // Out Wrist Ready Pos ^
+                OutWristRight.setPosition(0.2);
+                OutWristLeft.setPosition(0.8); // Out Wrist Ready Pos ^
 
                 OutClaw.setPosition(1); // Out Claw Close
 
