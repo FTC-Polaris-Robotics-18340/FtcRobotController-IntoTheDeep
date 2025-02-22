@@ -51,7 +51,7 @@ public class Left4Samples extends LinearOpMode {
         // actions that need to happen on init; for instance, a claw tightening.
         Actions.runBlocking(fourbar.FourBarUp());
         Actions.runBlocking(claw.ClawClose());
-        Actions.runBlocking(lift.resetEncoder());
+       // Actions.runBlocking(lift.resetEncoder());
 
 
         waitForStart();
