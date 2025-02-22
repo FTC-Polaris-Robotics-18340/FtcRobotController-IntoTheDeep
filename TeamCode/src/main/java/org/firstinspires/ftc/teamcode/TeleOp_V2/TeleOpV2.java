@@ -35,10 +35,14 @@ public class TeleOpV2  extends LinearOpMode {
         extpos = 0.55;
         robot.IntakeClaw.setPosition(0);
         robot.Coax.setPosition(0.13);
-        robot.V4B.setPosition(0.4);
-        robot.OuttakeRight.setPosition(0.2);
-        robot.OuttakeLeft.setPosition(0.8);
-        robot.OuttakeRotation.setPosition(0.3);
+        if ((robot.Coax.getPosition() == 0.13)){
+            robot.V4B.setPosition(0.4);
+            robot.OuttakeLeftWrist.setPosition(0.65);
+            robot.OuttakeRightWrist.setPosition(0.35);
+            robot.OuttakeLeft.setPosition(0.5);
+            robot.OuttakeRight.setPosition(0.5);
+            robot.OuttakeRotation.setPosition(0.7);
+        }
     }
     //gamepad1, right bumber goes to close than open
 
@@ -110,7 +114,7 @@ public class TeleOpV2  extends LinearOpMode {
                     robot.OuttakeRight.setPosition(1);
                 } else if (gamepad1Ex.getButton(GamepadKeys.Button.RIGHT_BUMPER)) {
                     robot.OuttakeClaw.setPosition(1);
-                    if ((robot.OuttakeClaw.getPosition()) >= 0.5){
+                    if ((robot.OuttakeClaw.getPosition()) >= 0.8){
                         robot.OuttakeLeftWrist.setPosition(0.65);
                         robot.OuttakeRightWrist.setPosition(0.35);
                         robot.OuttakeLeft.setPosition(0.5);
@@ -223,6 +227,12 @@ public class TeleOpV2  extends LinearOpMode {
                     robot.OuttakeRight.setPosition(0.7);
                     robot.OuttakeLeft.setPosition(0.3);
 
+                }
+                if (gamepad1Ex.getButton(GamepadKeys.Button.A)) {
+                    robot.OuttakeClaw.setPosition(1);
+                }
+                if (gamepad1Ex.getButton(GamepadKeys.Button.B)) {
+                    robot.OuttakeClaw.setPosition(0.4);
                 }
                 robot.ExtLeft.setPosition(1 - extpos);
                 robot.ExtRight.setPosition(extpos);
