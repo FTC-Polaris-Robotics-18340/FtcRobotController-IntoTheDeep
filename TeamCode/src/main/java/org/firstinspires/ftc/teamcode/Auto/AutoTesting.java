@@ -47,7 +47,7 @@ public class AutoTesting extends LinearOpMode {
         Pose2d toBasket_lastPose = new Pose2d(0, -33, Math.toRadians(90));
         Pose2d pushSample3_lastPose = new Pose2d(50, -40, Math.toRadians(180));
         Pose2d turnToSamplePose = new Pose2d(48, -37, Math.toRadians(90));
-        Pose2d pickSpecimenPose = new Pose2d(48, -37, Math.toRadians(90));
+        Pose2d pickSpecimenPose = new Pose2d(48, -35, Math.toRadians(90));
         Pose2d scoreSpecimenPoseFirst = new Pose2d(0, -30, Math.toRadians(90));
         Pose2d scoreSpecimenPoseSecond = new Pose2d(0, -30, Math.toRadians(90));
         Pose2d scoreSpecimenPoseThird = new Pose2d(0, -33, Math.toRadians(90));
@@ -66,14 +66,14 @@ public class AutoTesting extends LinearOpMode {
 
         TrajectoryActionBuilder tab2 = tab1.endTrajectory().fresh()
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(37, -36, Math.toRadians(90)), Math.toRadians(0), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
+                .splineToLinearHeading(new Pose2d(37, -38, Math.toRadians(90)), Math.toRadians(0), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
                 .setTangent(Math.toRadians(90))
                 .splineToLinearHeading(new Pose2d(37, -6, Math.toRadians(90)), Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
                 .setTangent(Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(45,  -6, Math.toRadians(180)), Math.toRadians(0))
                 .setTangent(Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(45, -58, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
-                .splineToLinearHeading(new Pose2d(45, -40, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight));
+                .splineToLinearHeading(new Pose2d(45, -58, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight));
+                //.splineToLinearHeading(new Pose2d(45, -40, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight));
 
         TrajectoryActionBuilder tab4 = tab2.endTrajectory().fresh()
                 .setTangent(Math.toRadians(90))
