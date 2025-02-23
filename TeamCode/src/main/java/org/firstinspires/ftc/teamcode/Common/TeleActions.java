@@ -196,7 +196,38 @@ public class TeleActions {
         };
     }
 
+    private Action clawForPick() {
+        return new Action() {
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                OuttakeClaw.setPosition(1);
+                return false;
+            }
+        };
+    }
 
+    private Action restOfPick() {
+        return new Action() {
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                OuttakeLeftWrist.setPosition(0.65);
+                OuttakeRightWrist.setPosition(0.35);
+                OuttakeLeft.setPosition(0.5);
+                OuttakeRight.setPosition(0.5);
+                OuttakeRotation.setPosition(0.7);
+                return false;
+            }
+        };
+    }
+
+    public Action specimenPickRoutine() {
+        return new SequentialAction(
+                this.clawForPick(),
+                new SleepAction(0.5),
+                this.restOfPick()
+
+        );
+    }
 }
 
 

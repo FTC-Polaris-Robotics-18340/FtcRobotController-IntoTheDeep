@@ -69,11 +69,9 @@ public class TeleOpV2  extends LinearOpMode {
             );
 
 
-
-
-            if ((gamepad2Ex.getButton(GamepadKeys.Button.RIGHT_BUMPER)&&(gamepad2Ex.getButton(GamepadKeys.Button.DPAD_UP)))){
+            if ((gamepad2Ex.getButton(GamepadKeys.Button.RIGHT_BUMPER) && (gamepad2Ex.getButton(GamepadKeys.Button.DPAD_UP)))){
                 scoremode = true;
-            } else if ((gamepad2Ex.getButton(GamepadKeys.Button.LEFT_BUMPER)&&(gamepad2Ex.getButton(GamepadKeys.Button.DPAD_DOWN)))){
+            } else if ((gamepad2Ex.getButton(GamepadKeys.Button.LEFT_BUMPER) && (gamepad2Ex.getButton(GamepadKeys.Button.DPAD_DOWN)))){
                 scoremode = false;
             }
 
@@ -248,8 +246,8 @@ public class TeleOpV2  extends LinearOpMode {
                 if (gamepad1Ex.getButton(GamepadKeys.Button.B)) {
                     robot.OuttakeClaw.setPosition(0.4);
                 }
-                robot.ExtLeft.setPosition(1 - extpos);
-                robot.ExtRight.setPosition(extpos);
+//                robot.ExtLeft.setPosition(1 - extpos);
+//                robot.ExtRight.setPosition(extpos);
 
             }
 

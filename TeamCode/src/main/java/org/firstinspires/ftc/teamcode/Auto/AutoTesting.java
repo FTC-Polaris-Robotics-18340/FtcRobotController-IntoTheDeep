@@ -48,8 +48,8 @@ public class AutoTesting extends LinearOpMode {
         Pose2d pushSample3_lastPose = new Pose2d(50, -40, Math.toRadians(180));
         Pose2d turnToSamplePose = new Pose2d(48, -37, Math.toRadians(90));
         Pose2d pickSpecimenPose = new Pose2d(48, -37, Math.toRadians(90));
-        Pose2d scoreSpecimenPoseFirst = new Pose2d(0, -33, Math.toRadians(90));
-        Pose2d scoreSpecimenPoseSecond = new Pose2d(0, -33, Math.toRadians(90));
+        Pose2d scoreSpecimenPoseFirst = new Pose2d(0, -30, Math.toRadians(90));
+        Pose2d scoreSpecimenPoseSecond = new Pose2d(0, -30, Math.toRadians(90));
         Pose2d scoreSpecimenPoseThird = new Pose2d(0, -33, Math.toRadians(90));
         Pose2d scoreSpecimenPoseFourth = new Pose2d(0, -33, Math.toRadians(90));
 
@@ -62,48 +62,43 @@ public class AutoTesting extends LinearOpMode {
         final double maxProfAccelStraight = 120;
 
         TrajectoryActionBuilder tab1 = drive.actionBuilder(initialPose)
-                .splineToLinearHeading(toBasket_lastPose, Math.toRadians(90), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight));
+                .splineToLinearHeading(toBasket_lastPose, Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel));
 
         TrajectoryActionBuilder tab2 = tab1.endTrajectory().fresh()
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(37, -36,
-                        Math.toRadians(90)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(37, -36, Math.toRadians(90)), Math.toRadians(0), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
                 .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(37, -6,
-                        Math.toRadians(90)), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(37, -6, Math.toRadians(90)), Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
                 .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(45,  -6,
-                        Math.toRadians(180)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(45,  -6, Math.toRadians(180)), Math.toRadians(0))
                 .setTangent(Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(45, -48,
-                        Math.toRadians(180)), Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(45, -40,
-                        Math.toRadians(180)), Math.toRadians(270));
+                .splineToLinearHeading(new Pose2d(45, -58, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
+                .splineToLinearHeading(new Pose2d(45, -40, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight));
 
-        TrajectoryActionBuilder tab3 = tab2.endTrajectory().fresh()
+        TrajectoryActionBuilder tab4 = tab2.endTrajectory().fresh()
                 .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(40, -4, Math.toRadians(180)), Math.toRadians(90), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
+                .splineToLinearHeading(new Pose2d(33, -4, Math.toRadians(180)), Math.toRadians(90), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel))
                 .setTangent(Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(54,  -4, Math.toRadians(180)), Math.toRadians(0), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
                 .setTangent(Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(54, -48, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
-                .splineToLinearHeading(new Pose2d(54, -40, Math.toRadians(180)), Math.toRadians(270));
-
-        TrajectoryActionBuilder tab4 = tab3.endTrajectory().fresh()
-                .setTangent(Math.toRadians(90))
-                .splineToLinearHeading(new Pose2d(52, -6, Math.toRadians(180)), Math.toRadians(90), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
-                .setTangent(Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(62,  -6, Math.toRadians(180)), Math.toRadians(0), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
-                .setTangent(Math.toRadians(270))
-                .splineToLinearHeading(new Pose2d(62, -48, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
+                .splineToLinearHeading(new Pose2d(54, -58, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
                 .splineToLinearHeading(pushSample3_lastPose, Math.toRadians(270));
+
+//        TrajectoryActionBuilder tab4 = tab3.endTrajectory().fresh()
+//                .setTangent(Math.toRadians(90))
+//                .splineToLinearHeading(new Pose2d(50, -6, Math.toRadians(180)), Math.toRadians(90), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
+//                .setTangent(Math.toRadians(0))
+//                .splineToLinearHeading(new Pose2d(62,  -6, Math.toRadians(180)), Math.toRadians(0), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
+//                .setTangent(Math.toRadians(270))
+//                .splineToLinearHeading(new Pose2d(62, -48, Math.toRadians(180)), Math.toRadians(270), new TranslationalVelConstraint(minTransVelStraight), new ProfileAccelConstraint(minProfAccelStraight, maxProfAccelStraight))
+//                .splineToLinearHeading(pushSample3_lastPose, Math.toRadians(270));
 
         TrajectoryActionBuilder tab5 = tab4.endTrajectory().fresh()
                 .setTangent(Math.toRadians(270))
                 .splineToLinearHeading(turnToSamplePose, Math.toRadians(270), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel));
 
         TrajectoryActionBuilder tab6 = tab5.endTrajectory().fresh()
-                .lineToY(-51);
+                .lineToY(-53);
 
         TrajectoryActionBuilder tab7 = tab6.endTrajectory().fresh()
                 .setTangent(Math.toRadians(135))
@@ -115,7 +110,7 @@ public class AutoTesting extends LinearOpMode {
                 .splineToLinearHeading(pickSpecimenPose, Math.toRadians(270), new TranslationalVelConstraint(minTransVel), new ProfileAccelConstraint(minProfAccel, maxProfAccel));
 
         TrajectoryActionBuilder tab9 = tab8.endTrajectory().fresh()
-                .lineToY(-51);
+                .lineToY(-53);
 
         TrajectoryActionBuilder tab10 = tab9.endTrajectory().fresh()
                 .setTangent(Math.toRadians(135))
@@ -149,7 +144,7 @@ public class AutoTesting extends LinearOpMode {
 
         Action toChambers = tab1.build();
         Action pushSample1 = tab2.build();
-        Action pushSample2 = tab3.build();
+//        Action pushSample2 = tab3.build();
         Action pushSample3 = tab4.build();
         Action turnToSpecimen = tab5.build();
         Action pickSpecimenAfterTurn = tab6.build();
@@ -181,20 +176,28 @@ public class AutoTesting extends LinearOpMode {
                                 toChambers,
                                 autoActions.scoreReadyRoutine(),
                                 lift.slidesToScoreSpec()
-                        ),
+                        )
+                )
+        );
 
+        aprilTagCorrection(toBasket_lastPose, 1, 5);
+
+        Actions.runBlocking(
+                new SequentialAction(
                         autoActions.scoringRoutine(),
 
-                        new SleepAction(1),
+                        new SleepAction(0.5),
 
                         outClaw.ClawOpen(),
+
+                        new SleepAction(0.5),
 
                         new ParallelAction(
                                 pushSample1,
                                 lift.slidesDownToGround()
                         ),
 
-                        pushSample2,
+//                        pushSample2,
                         pushSample3
                 )
         );
@@ -215,13 +218,21 @@ public class AutoTesting extends LinearOpMode {
 
                         autoActions.scoreReadyRoutine(),
 
-                        new SleepAction(2),
+                        new SleepAction(1),
 
                         new ParallelAction(
+                                outRot.scorePos(),
                                 scoreSpecimenFromTurn,
                                 lift.slidesToScoreSpec()
-                        ),
 
+                        )
+                )
+        );
+
+        aprilTagCorrection(scoreSpecimenPoseFirst, 1, 5);
+
+        Actions.runBlocking(
+                new SequentialAction(
                         autoActions.scoringRoutine(),
 
                         new SleepAction(1),
@@ -229,8 +240,6 @@ public class AutoTesting extends LinearOpMode {
                         outClaw.ClawOpen()
                 )
         );
-
-        aprilTagCorrection(scoreSpecimenPoseFirst, 1, 5);
 
         Actions.runBlocking(
                 new SequentialAction(
@@ -247,18 +256,14 @@ public class AutoTesting extends LinearOpMode {
 
                         autoActions.scoreReadyRoutine(),
 
-                        new SleepAction(2),
-
-                        new ParallelAction(
-                                scoreSpecimenFromPickFirst,
-                                lift.slidesToScoreSpec()
-                        ),
-
-                        autoActions.scoringRoutine(),
-
                         new SleepAction(1),
 
-                        outClaw.ClawOpen()
+                        new ParallelAction(
+                                outRot.scorePos(),
+                                scoreSpecimenFromPickFirst,
+                                lift.slidesToScoreSpec()
+
+                        )
                 )
         );
 
@@ -266,26 +271,6 @@ public class AutoTesting extends LinearOpMode {
 
         Actions.runBlocking(
                 new SequentialAction(
-                        new ParallelAction(
-                                pickSpecimenSecond,
-                                autoActions.pickRoutine(),
-                                lift.slidesDownToGround()
-                        ),
-
-                        pickSpecimenSecondForward,
-                        outClaw.ClawClose(),
-
-                        new SleepAction(0.5),
-
-                        autoActions.scoreReadyRoutine(),
-
-                        new SleepAction(2),
-
-                        new ParallelAction(
-                                scoreSpecimenFromPickSecond,
-                                lift.slidesToScoreSpec()
-                        ),
-
                         autoActions.scoringRoutine(),
 
                         new SleepAction(1),
@@ -294,39 +279,69 @@ public class AutoTesting extends LinearOpMode {
                 )
         );
 
-        aprilTagCorrection(scoreSpecimenPoseThird, 1, 5);
-
-        Actions.runBlocking(
-                new SequentialAction(
-                        new ParallelAction(
-                                pickSpecimenThird,
-                                autoActions.pickRoutine(),
-                                lift.slidesDownToGround()
-                        ),
-
-                        pickSpecimenThirdForward,
-                        outClaw.ClawClose(),
-
-                        new SleepAction(0.5),
-
-                        autoActions.scoreReadyRoutine(),
-
-                        new SleepAction(2),
-
-                        new ParallelAction(
-                                scoreSpecimenFromPickThird,
-                                lift.slidesToScoreSpec()
-                        ),
-
-                        autoActions.scoringRoutine(),
-
-                        new SleepAction(1),
-
-                        outClaw.ClawOpen()
-                )
-        );
-
-        aprilTagCorrection(scoreSpecimenPoseFourth, 1, 5);
+//        Actions.runBlocking(
+//                new SequentialAction(
+//                        new ParallelAction(
+//                                pickSpecimenSecond,
+//                                autoActions.pickRoutine(),
+//                                lift.slidesDownToGround()
+//                        ),
+//
+//                        pickSpecimenSecondForward,
+//                        outClaw.ClawClose(),
+//
+//                        new SleepAction(0.5),
+//
+//                        autoActions.scoreReadyRoutine(),
+//
+//                        new SleepAction(2),
+//
+//                        new ParallelAction(
+//                                scoreSpecimenFromPickSecond,
+//                                lift.slidesToScoreSpec()
+//                        ),
+//
+//                        autoActions.scoringRoutine(),
+//
+//                        new SleepAction(1),
+//
+//                        outClaw.ClawOpen()
+//                )
+//        );
+//
+//        aprilTagCorrection(scoreSpecimenPoseThird, 1, 5);
+//
+//        Actions.runBlocking(
+//                new SequentialAction(
+//                        new ParallelAction(
+//                                pickSpecimenThird,
+//                                autoActions.pickRoutine(),
+//                                lift.slidesDownToGround()
+//                        ),
+//
+//                        pickSpecimenThirdForward,
+//                        outClaw.ClawClose(),
+//
+//                        new SleepAction(0.5),
+//
+//                        autoActions.scoreReadyRoutine(),
+//
+//                        new SleepAction(2),
+//
+//                        new ParallelAction(
+//                                scoreSpecimenFromPickThird,
+//                                lift.slidesToScoreSpec()
+//                        ),
+//
+//                        autoActions.scoringRoutine(),
+//
+//                        new SleepAction(1),
+//
+//                        outClaw.ClawOpen()
+//                )
+//        );
+//
+//        aprilTagCorrection(scoreSpecimenPoseFourth, 1, 5);
 
     }
 
