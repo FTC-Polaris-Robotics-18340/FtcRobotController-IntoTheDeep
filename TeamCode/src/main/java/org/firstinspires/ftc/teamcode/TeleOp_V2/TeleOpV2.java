@@ -1,10 +1,15 @@
 package org.firstinspires.ftc.teamcode.TeleOp_V2;
 
+import com.acmerobotics.roadrunner.SequentialAction;
+import com.acmerobotics.roadrunner.SleepAction;
+import com.acmerobotics.roadrunner.ftc.Actions;
 import com.arcrobotics.ftclib.drivebase.MecanumDrive;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.teamcode.Common.TeleActions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,11 +25,13 @@ public class TeleOpV2  extends LinearOpMode {
     static boolean scoremode = true;
 
     static boolean clawMoving;
+    private TeleActions teleActions;
 
     private void HardwareStart() {
         robot = new RobotV2();
         robot.init(hardwareMap);
         drive = new MecanumDrive(robot.FrontLeft, robot.FrontRight, robot.BackLeft, robot.BackRight);
+        teleActions = new TeleActions(hardwareMap);
 
         gamepad1Ex = new GamepadEx(gamepad1);
         gamepad2Ex = new GamepadEx(gamepad2);
@@ -136,13 +143,18 @@ public class TeleOpV2  extends LinearOpMode {
                 }
 
                 if (gamepad2Ex.getButton(GamepadKeys.Button.A)) {
-                    robot.Coax.setPosition(0.13);
-                    robot.V4B.setPosition(0.57);
-                    TimeUnit.MILLISECONDS.sleep(500);
-                    robot.IntakeClaw.setPosition(1);
-                    TimeUnit.MILLISECONDS.sleep(250);
-                    robot.V4B.setPosition(0.4);
-                    extpos = 0.7;
+//                    robot.Coax.setPosition(0.13);
+//                    robot.V4B.setPosition(0.57);
+//                    TimeUnit.MILLISECONDS.sleep(500);
+//                    robot.IntakeClaw.setPosition(1);
+//                    TimeUnit.MILLISECONDS.sleep(250);
+//                    robot.V4B.setPosition(0.4);
+//                    extpos = 0.7;
+                    Actions.runBlocking(
+                            new SequentialAction(
+                                    teleActions.transferRoutine()
+                            )
+                    );
 
                 }
 
@@ -182,32 +194,29 @@ public class TeleOpV2  extends LinearOpMode {
                     robot.IntakeRotation.setPosition(0.07);
                 }
                 if (gamepad2Ex.getButton(GamepadKeys.Button.A)) { // intake transfer pos
-                    robot.Coax.setPosition(0.13);
-                    robot.V4B.setPosition(0.57);
-                    TimeUnit.MILLISECONDS.sleep(500);
-                    robot.IntakeClaw.setPosition(1);
-                    TimeUnit.MILLISECONDS.sleep(250);
-                    robot.V4B.setPosition(0.1);
-                    robot.IntakeRotation.setPosition(0.03);
-                    robot.OuttakeRotation.setPosition(0.7);
-                    robot.OuttakeClaw.setPosition(0.4);
-                    robot.OuttakeRightWrist.setPosition(0);
-                    robot.OuttakeLeftWrist.setPosition(1);
-                    robot.IntakeClaw.setPosition(0.95);
-                    robot.Coax.setPosition(1);
-                    TimeUnit.MILLISECONDS.sleep(750);
-                    robot.OuttakeLeft.setPosition(0.88);
-                    robot.OuttakeRight.setPosition(0.12);
+//                    robot.Coax.setPosition(0.13);
+//                    robot.V4B.setPosition(0.57);
+//                    TimeUnit.MILLISECONDS.sleep(500);
+//                    robot.IntakeClaw.setPosition(1);
+//                    TimeUnit.MILLISECONDS.sleep(250);
+//                    robot.V4B.setPosition(0.1);
+//                    robot.IntakeRotation.setPosition(0.03);
+//                    robot.OuttakeRotation.setPosition(0.7);
+//                    robot.OuttakeClaw.setPosition(0.4);
+//                    robot.OuttakeRightWrist.setPosition(0);
+//                    robot.OuttakeLeftWrist.setPosition(1);
+//                    robot.IntakeClaw.setPosition(0.95);
+//                    robot.Coax.setPosition(1);
+//                    TimeUnit.MILLISECONDS.sleep(750);
+//                    robot.OuttakeLeft.setPosition(0.88);
+//                    robot.OuttakeRight.setPosition(0.12);
+//                    extpos = 0.55;
+                    Actions.runBlocking(
+                            new SequentialAction(
+                                    teleActions.transferRoutine()
+                            )
+                    );
                     extpos = 0.55;
-
-                }
-                if (gamepad2Ex.getButton(GamepadKeys.Button.DPAD_UP)){ // sweeper action
-                    robot.IntakeClaw.setPosition(0.4);
-                    robot.V4B.setPosition(0.65);
-                    TimeUnit.MILLISECONDS.sleep(500);
-                    robot.IntakeClaw.setPosition(0);
-                    TimeUnit.MILLISECONDS.sleep(100);
-                    robot.V4B.setPosition(0.4);
                 }
 
                 if (gamepad2Ex.getButton(GamepadKeys.Button.B)) {
@@ -219,13 +228,18 @@ public class TeleOpV2  extends LinearOpMode {
 
                 }
                 if(gamepad2Ex.getButton(GamepadKeys.Button.DPAD_DOWN)){
-                    robot.OuttakeClaw.setPosition(1);
-                    TimeUnit.MILLISECONDS.sleep(500);
-                    robot.IntakeClaw.setPosition(0.4);
-                    extpos = 0.1;
-                    TimeUnit.MILLISECONDS.sleep(500);
-                    robot.OuttakeRight.setPosition(0.7);
-                    robot.OuttakeLeft.setPosition(0.3);
+//                    robot.OuttakeClaw.setPosition(1);
+//                    TimeUnit.MILLISECONDS.sleep(500);
+//                    robot.IntakeClaw.setPosition(0.4);
+//                    extpos = 0.1;
+//                    TimeUnit.MILLISECONDS.sleep(500);
+//                    robot.OuttakeRight.setPosition(0.7);
+//                    robot.OuttakeLeft.setPosition(0.3);
+                    Actions.runBlocking(
+                            new SequentialAction(
+                                    teleActions.ClawToClawRoutine()
+                            )
+                    );
 
                 }
                 if (gamepad1Ex.getButton(GamepadKeys.Button.A)) {
