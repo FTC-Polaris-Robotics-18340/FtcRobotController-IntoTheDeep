@@ -66,10 +66,10 @@ public class TeleActions {
                 this.transferCV4B(),
                 new SleepAction(0.5),
                 this.transferIC(),
-                new SleepAction(0.25),
+                new SleepAction(0.5),
                 this.transferWrist(),
                 new SleepAction(0.75),
-                this.transferArm()
+                this.transferExt()
         );
     }
 
@@ -104,18 +104,18 @@ public class TeleActions {
                     OuttakeClaw.setPosition(0.4);
                     OuttakeRightWrist.setPosition(0);
                     OuttakeLeftWrist.setPosition(1);
-                    IntakeClaw.setPosition(0.95);
+                    IntakeClaw.setPosition(0.59);
                     Coax.setPosition(1);
+                    OuttakeLeft.setPosition(0.97);
+                    OuttakeRight.setPosition(0.03);
                 return false;
             }
         };
     }
-    private Action transferArm() {
+    private Action transferExt() {
         return new Action() {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                OuttakeLeft.setPosition(0.88);
-                OuttakeRight.setPosition(0.12);
                 ExtLeft.setPosition(0.45);
                 ExtRight.setPosition(0.55);
                 return false;
@@ -166,9 +166,9 @@ public class TeleActions {
     public Action SpecimenIntakeRoutine() {
         return new SequentialAction(
                 this.CV4BDown(),
-                new SleepAction(0.5),
-                this.transferIC(),
                 new SleepAction(0.25),
+                this.clawForPick(),
+                new SleepAction(0.5),
                 this.BackToRobot()
 
 
@@ -200,7 +200,7 @@ public class TeleActions {
         return new Action() {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                OuttakeClaw.setPosition(1);
+                IntakeClaw.setPosition(1);
                 return false;
             }
         };

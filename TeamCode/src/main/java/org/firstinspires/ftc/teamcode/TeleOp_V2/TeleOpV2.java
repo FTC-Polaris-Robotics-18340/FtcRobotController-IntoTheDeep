@@ -14,13 +14,13 @@ import org.firstinspires.ftc.teamcode.Common.TeleActions;
 import java.util.concurrent.TimeUnit;
 
 
-@TeleOp(name = "TeleOp V2")
+@TeleOp(name = "TeleOp V2", group = "1Tele")
 public class TeleOpV2  extends LinearOpMode {
     static MecanumDrive drive;
     static GamepadEx gamepad1Ex;
     static GamepadEx gamepad2Ex;
     static RobotV2 robot;
-    static double extpos = 0;
+//    static double extpos = 0;
 
     static boolean scoremode = true;
 
@@ -39,7 +39,7 @@ public class TeleOpV2  extends LinearOpMode {
         // Init Actions
 
         clawMoving = false;
-        extpos = 0.55;
+//        extpos = 0.55;
         robot.IntakeClaw.setPosition(0);
         robot.Coax.setPosition(0.13);
         if ((robot.Coax.getPosition() == 0.13)){
@@ -50,6 +50,8 @@ public class TeleOpV2  extends LinearOpMode {
             robot.OuttakeRight.setPosition(0.5);
             robot.OuttakeRotation.setPosition(0.7);
         }
+        robot.ExtLeft.setPosition(0.45);
+        robot.ExtRight.setPosition(0.55);
     }
     //gamepad1, right bumber goes to close than open
 
@@ -105,18 +107,18 @@ public class TeleOpV2  extends LinearOpMode {
             }*/
 
                 if (gamepad2Ex.getButton(GamepadKeys.Button.DPAD_DOWN)) {
-                    //robot.OuttakeLeftWrist.setPosition(0.7);
-                    robot.OuttakeRightWrist.setPosition(0.3);
-                    robot.OuttakeRotation.setPosition(0.7);
+                    robot.OuttakeLeftWrist.setPosition(0.65);
+                    robot.OuttakeRightWrist.setPosition(0.35);
+                    robot.OuttakeRotation.setPosition(0.6);
                     robot.OuttakeLeft.setPosition(0.8);
                     robot.OuttakeRight.setPosition(0.2);
                 } else if (gamepad1Ex.getButton(GamepadKeys.Button.LEFT_BUMPER)) {
-                    robot.OuttakeLeftWrist.setPosition(0.65);
+                    robot.OuttakeLeftWrist.setPosition(0.62);
                     robot.OuttakeClaw.setPosition(0.4);
-                    robot.OuttakeRightWrist.setPosition(0.35);
+                    robot.OuttakeRightWrist.setPosition(0.38);
                     robot.OuttakeRotation.setPosition(0);
-                    robot.OuttakeLeft.setPosition(0);
-                    robot.OuttakeRight.setPosition(1);
+                    robot.OuttakeLeft.setPosition(0.07);
+                    robot.OuttakeRight.setPosition(0.93);
                 } else if (gamepad1Ex.getButton(GamepadKeys.Button.RIGHT_BUMPER)) {
                     robot.OuttakeClaw.setPosition(1);
                     if ((robot.OuttakeClaw.getPosition()) >= 0.8){
@@ -150,7 +152,7 @@ public class TeleOpV2  extends LinearOpMode {
 //                    extpos = 0.7;
                     Actions.runBlocking(
                             new SequentialAction(
-                                    teleActions.transferRoutine()
+                                    teleActions.SpecimenIntakeRoutine()
                             )
                     );
 
@@ -159,20 +161,21 @@ public class TeleOpV2  extends LinearOpMode {
                 if (gamepad2Ex.getButton(GamepadKeys.Button.B)) {
                     robot.Coax.setPosition(0.13);
                     robot.V4B.setPosition(0.4);
-                    extpos = 0;
+                    robot.ExtLeft.setPosition(1);
+                    robot.ExtRight.setPosition(0);
                     robot.IntakeClaw.setPosition(0);
                 }
 
 
-                robot.ExtLeft.setPosition(1 - extpos);
-                robot.ExtRight.setPosition(extpos);
+//                robot.ExtLeft.setPosition(1 - extpos);
+//                robot.ExtRight.setPosition(extpos);
 
 
-                if (extpos > 1) {
-                    extpos = 1;
-                } else if (extpos < 0) {
-                    extpos = 0;
-                }
+//                if (extpos > 1) {
+//                    extpos = 1;
+//                } else if (extpos < 0) {
+//                    extpos = 0;
+//                }
             } else if (scoremode == false){
                 telemetry.addData("Score Mode", "Samples");
                 if (gamepad2Ex.getLeftY() > 0.01) { // Slides UP
@@ -214,13 +217,14 @@ public class TeleOpV2  extends LinearOpMode {
                                     teleActions.transferRoutine()
                             )
                     );
-                    extpos = 0.55;
+//                    extpos = 0.55;
                 }
 
                 if (gamepad2Ex.getButton(GamepadKeys.Button.B)) {
                     robot.Coax.setPosition(0.13);
                     robot.V4B.setPosition(0.4);
-                    extpos = 0.05;
+                    robot.ExtLeft.setPosition(0.95);
+                    robot.ExtRight.setPosition(0.05);
                     robot.IntakeClaw.setPosition(0);
 
 
@@ -253,9 +257,9 @@ public class TeleOpV2  extends LinearOpMode {
 
 
            // telemetry.addData("Extension Position Variable", extpos);
-            telemetry.addData("Extension Left Position", robot.ExtLeft.getPosition());
-            telemetry.addData("Extension Right Position", robot.ExtRight.getPosition());
-            telemetry.update();
+//            telemetry.addData("Extension Left Position", robot.ExtLeft.getPosition());
+//            telemetry.addData("Extension Right Position", robot.ExtRight.getPosition());
+//            telemetry.update();
 
 
         }

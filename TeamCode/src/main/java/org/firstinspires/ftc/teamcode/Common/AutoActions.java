@@ -36,8 +36,8 @@ public class AutoActions {
 
                 OutClawRot.setPosition(0.7); // Out Claw Rot Score Pos ^
 
-                ArmRight.setPosition(0.15);
-                ArmLeft.setPosition(0.85); // Arm Score Spec ^
+                ArmRight.setPosition(0.07);
+                ArmLeft.setPosition(0.93); // Arm Score Spec ^
 
 //                OutClaw.setPosition(0.4); // Out Claw Open
                 return false;
@@ -54,8 +54,8 @@ public class AutoActions {
 
                 OutClawRot.setPosition(0); // Out Claw Rot Pick Pos
 
-                ArmRight.setPosition(0.95);
-                ArmLeft.setPosition(0.05); // Arm Pick Spec ^
+                ArmRight.setPosition(0.9);
+                ArmLeft.setPosition(0.1); // Arm Pick Spec ^
 
                 OutClaw.setPosition(0.4); // Out Claw Open
                 return false;
