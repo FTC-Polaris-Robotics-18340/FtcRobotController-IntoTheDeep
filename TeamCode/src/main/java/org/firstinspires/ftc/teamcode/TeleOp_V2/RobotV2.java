@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.TeleOp_V2;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class RobotV2 {
@@ -29,6 +30,9 @@ public class RobotV2 {
     public SimpleServo IntakeRotation;
     public MotorEx LiftRight;
     public MotorEx LiftLeft;
+
+
+
 
     private static HardwareMap hwMapRobot;
 
