@@ -16,9 +16,8 @@ public class MeepMeepTesting {
                 .setDimensions(20, 20)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(90, 65, Math.toRadians(180), Math.toRadians(180), 17)
-                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder((new Pose2d(8, -63.5, Math.toRadians(90))))
+                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder((new Pose2d(-12, -63.5, Math.toRadians(90))))
                         .splineToLinearHeading(new Pose2d(-10, -33, Math.toRadians(90)), Math.toRadians(90)) // tab1 Score 1
-
                         .setTangent(Math.toRadians(0))                                                           // tab2 push 1
                         .splineToLinearHeading(new Pose2d(37, -36, Math.toRadians(90)), Math.toRadians(0))
                         .setTangent(Math.toRadians(90))

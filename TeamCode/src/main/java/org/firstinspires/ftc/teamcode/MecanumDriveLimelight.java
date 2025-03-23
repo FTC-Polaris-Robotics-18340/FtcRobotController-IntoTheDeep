@@ -86,9 +86,13 @@ public final class MecanumDriveLimelight {
         public double maxAngAccel = Math.toRadians(200);
 
         // path controller gains
-        public double axialGain = 1.6;
-        public double lateralGain = 0.5;
-        public double headingGain = 0.8; // shared with turn
+        public double axialGain = 1.83;
+        // 1.6
+        // 1.75
+        public double lateralGain = 0.73;
+        // 0.5
+        // 0.65
+        public double headingGain = 0.9; // shared with turn      0.8
 
         public double axialVelGain = 0.0;
         public double lateralVelGain = 0.0;

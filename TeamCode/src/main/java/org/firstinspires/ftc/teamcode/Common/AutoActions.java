@@ -36,8 +36,8 @@ public class AutoActions {
 
                 OutClawRot.setPosition(0.7); // Out Claw Rot Score Pos ^
 
-                ArmRight.setPosition(0.05);
-                ArmLeft.setPosition(0.95); // Arm Score Spec ^
+                ArmRight.setPosition(0.07);
+                ArmLeft.setPosition(0.93); // Arm Score Spec ^
 
 //                OutClaw.setPosition(0.4); // Out Claw Open
                 return false;
@@ -54,8 +54,8 @@ public class AutoActions {
 
                 OutClawRot.setPosition(0); // Out Claw Rot Pick Pos
 
-                ArmRight.setPosition(1);
-                ArmLeft.setPosition(0); // Arm Pick Spec ^
+                ArmRight.setPosition(0.9);
+                ArmLeft.setPosition(0.1); // Arm Pick Spec ^
 
                 OutClaw.setPosition(0.4); // Out Claw Open
                 return false;
@@ -72,10 +72,10 @@ public class AutoActions {
 
                 OutClaw.setPosition(1); // Out Claw Close
 
-                ArmRight.setPosition(0.3);
-                ArmLeft.setPosition(0.7); // Arm Score Ready Pos ^
+                ArmRight.setPosition(0.5);
+                ArmLeft.setPosition(0.5); // Arm Score Ready Pos ^
 
-                OutClawRot.setPosition(0.7); // Out Claw Rot Score Pos
+//                OutClawRot.setPosition(0.7); // Out Claw Rot Score Pos
                 return false;
             }
         };
@@ -90,8 +90,8 @@ public class AutoActions {
 
                 OutClaw.setPosition(1); // Out Claw Close
 
-                ArmRight.setPosition(0);
-                ArmLeft.setPosition(1); // Arm Score Ready Pos ^
+                ArmRight.setPosition(0.2);
+                ArmLeft.setPosition(0.8); // Arm Score Ready Pos ^
 
                 OutClawRot.setPosition(0.7); // Out Claw Rot Score Pos
                 return false;
