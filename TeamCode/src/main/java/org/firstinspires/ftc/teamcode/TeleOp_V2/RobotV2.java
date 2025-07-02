@@ -36,7 +36,12 @@ public class RobotV2 {
 
     private static HardwareMap hwMapRobot;
 
-
+    public void Collide(){
+        OuttakeLeft.setPosition(1);
+        OuttakeRight.setPosition(0);
+        ExtLeft.setPosition(0.8);
+        ExtRight.setPosition(0.2);
+    }
     public void init(HardwareMap hwMap) {
         hwMapRobot = hwMap;
 
@@ -83,6 +88,8 @@ public class RobotV2 {
         BackRight = new MotorEx(hwMap, "BR", Motor.GoBILDA.RPM_312);
         BackRight.setInverted(true);
         BackRight.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+
+
     }
 }
 
