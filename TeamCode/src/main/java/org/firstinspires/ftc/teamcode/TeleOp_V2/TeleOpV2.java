@@ -25,11 +25,7 @@ public class TeleOpV2  extends LinearOpMode {
     static RobotV2 robot;
     static double extpos = 0;
 
-    static double OuttakePos = 0;
     static boolean scoremode = true;
-
-    static boolean collision;
-
 
     static boolean clawMoving;
 
@@ -46,13 +42,6 @@ public class TeleOpV2  extends LinearOpMode {
     private double alphaValue; //Light Intensity
     private double targetValue = 1000;
     private TeleActions teleActions;
-
-    public void prevention(){
-        OuttakePos = 0;
-        extpos = 0.8;
-        telemetry.addData("COLLISION STATE","prevented");
-
-    }
 
 //    public void initColorSensor(){
 //        colorSensor = hardwareMap.get(ColorSensor.class,"colorSensor");
@@ -96,7 +85,6 @@ public class TeleOpV2  extends LinearOpMode {
             robot.OuttakeLeft.setPosition(0.5);
             robot.OuttakeRight.setPosition(0.5);
             robot.OuttakeRotation.setPosition(0.7);
-
         }
     }
     //gamepad1, right bumber goes to close than open
@@ -114,12 +102,6 @@ public class TeleOpV2  extends LinearOpMode {
         //colorTelemetry();
 
         while (opModeIsActive()) {
-            robot.OuttakeLeft.setPosition(OuttakePos);
-            robot.OuttakeRight.setPosition(1 - OuttakePos);
-            if (collision == true){
-                prevention();
-
-            }
             drive.driveRobotCentric(
                     gamepad1Ex.getLeftX(),
                     gamepad1Ex.getLeftY(),
@@ -192,8 +174,8 @@ public class TeleOpV2  extends LinearOpMode {
                     //robot.OuttakeLeftWrist.setPosition(0.7);
                     robot.OuttakeRightWrist.setPosition(0.3);
                     robot.OuttakeRotation.setPosition(0.7);
-                    robot.OuttakeLeft.setPosition(1);
-                    robot.OuttakeRight.setPosition(0);
+                    robot.OuttakeLeft.setPosition(0.8);
+                    robot.OuttakeRight.setPosition(0.2);
                 } else if (gamepad1Ex.getButton(GamepadKeys.Button.LEFT_BUMPER)) {
                     robot.OuttakeLeftWrist.setPosition(0.65);
                     robot.OuttakeClaw.setPosition(0.4);
@@ -210,6 +192,7 @@ public class TeleOpV2  extends LinearOpMode {
                             v_state++;
                             break;
                         case 1:
+
                             if (TimePassed.time()>=0.5){
                                 robot.OuttakeLeft.setPosition(0.5);
                                 robot.OuttakeRight.setPosition(0.5);
@@ -220,7 +203,6 @@ public class TeleOpV2  extends LinearOpMode {
                             }
                             break;
                         case 2:
-
                             if (TimePassed.time()>=0.5){
                                 robot.OuttakeRotation.setPosition(0.7);
                             }
@@ -327,40 +309,23 @@ public class TeleOpV2  extends LinearOpMode {
                 if (gamepad2Ex.getButton(GamepadKeys.Button.Y)) {
                     robot.IntakeRotation.setPosition(0.07);
                 }
-                if (OuttakePos > 0.5 && extpos < 0.2){
-                    collision = true;
-                }
-//                if (gamepad2Ex.getButton(GamepadKeys.Button.A)){
-//                    robot.Coax.setPosition(0.13);
-//                    robot.V4V.setPosition(0.57);
-//                    TimePassed.reset();
-//                    if (TimePassed.time >= 0.5){
-//                        robot.IntakeClaw.setPosition(1);
-//                        TimePassed.reset();
-//                        if(TimePassed.time >= 0.2){
-//                            robot.V4B.setPosition(0.1);
-//                            robot.IntakeRotation.setPosition()0.03
-//                        }
-//                    }
-//                }
                 if (gamepad2Ex.getButton(GamepadKeys.Button.A)) { // intake transfer pos
-                    switch (v_state) {
+                    switch (v_state)
+                    {
                         case 0:
                             robot.Coax.setPosition(0.13);
                             robot.V4B.setPosition(0.57);
-                            v_state++;
-
-                        case 1:
                             TimePassed.reset();
-                            while ((TimePassed.time()) < 0.5){
+                            v_state++;
+                        case 1:
 
+                            while ((TimePassed.time()) <= 0.3) {
                             }
-
                                 robot.IntakeClaw.setPosition(1);
                                 v_state++;
+                                TimePassed.reset();
                         case 2:
-                            TimePassed.reset();
-                            if (TimePassed.time()>=0.2){
+                            while (TimePassed.time()<=0.2){
                                 robot.V4B.setPosition(0.1);
                                 robot.IntakeRotation.setPosition(0.03);
                                 robot.OuttakeRotation.setPosition(0.7);
@@ -372,17 +337,15 @@ public class TeleOpV2  extends LinearOpMode {
                                 robot.OuttakeLeft.setPosition(0.88);
                                 robot.OuttakeRight.setPosition(0.12);
                                 v_state++;
+                                TimePassed.reset();
                             }
                         case 3:
-                            TimePassed.reset();
-                            if (TimePassed.time()>=0.5){
+                            while (TimePassed.time()<=0.3){
                                 robot.IntakeClaw.setPosition(0.61);
                                 robot.OuttakeLeft.setPosition(0.88);
                                 robot.OuttakeRight.setPosition(0.12);
                                 extpos = 0.5;
                             }
-
-                            break;
 
 
                     }
@@ -474,7 +437,6 @@ public class TeleOpV2  extends LinearOpMode {
             telemetry.addData("Extension Left Position", robot.ExtLeft.getPosition());
             telemetry.addData("Extension Right Position", robot.ExtRight.getPosition());
             telemetry.addData("TimePassed", TimePassed.time());
-            telemetry.addData("State", v_state);
             telemetry.update();
 
 
