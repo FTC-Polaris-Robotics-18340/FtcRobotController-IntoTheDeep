@@ -6,18 +6,13 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Common.Extension;
-import org.firstinspires.ftc.teamcode.Common.Lift;
-
 @TeleOp(name = "Driver Teleop")
 public class Teleop extends LinearOpMode {
-    static MecanumDrive drive;
-    static GamepadEx gamepad1Ex;
-    static GamepadEx gamepad2Ex;
-    static Robot robot;
-    static Extension extension;
-    static Lift slides;
-    long startTime;
+    private MecanumDrive drive;
+    private GamepadEx gamepad1Ex;
+    private GamepadEx gamepad2Ex;
+    private Robot robot;
+    private long startTime;
 
     private  void HardwareStart(){
         robot = new Robot();
