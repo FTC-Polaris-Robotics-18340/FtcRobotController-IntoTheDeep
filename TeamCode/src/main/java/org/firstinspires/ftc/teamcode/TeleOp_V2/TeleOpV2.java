@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.TeleOp_V2;
 
 import com.acmerobotics.roadrunner.SequentialAction;
-import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.arcrobotics.ftclib.drivebase.MecanumDrive;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
@@ -11,20 +10,18 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Common.TeleActions;
 
-import java.util.concurrent.TimeUnit;
 
 
 @TeleOp(name = "TeleOp V2", group = "1Tele")
 public class TeleOpV2  extends LinearOpMode {
-    static MecanumDrive drive;
-    static GamepadEx gamepad1Ex;
-    static GamepadEx gamepad2Ex;
-    static RobotV2 robot;
-//    static double extpos = 0;
+    private MecanumDrive drive;
+    private GamepadEx gamepad1Ex;
+    private GamepadEx gamepad2Ex;
+    private RobotV2 robot;
+//    double extpos = 0;
 
-    static boolean scoremode = true;
+    private boolean scoreMode = true;
 
-    static boolean clawMoving;
     private TeleActions teleActions;
 
     private void HardwareStart() {
@@ -37,8 +34,6 @@ public class TeleOpV2  extends LinearOpMode {
         gamepad2Ex = new GamepadEx(gamepad2);
 
         // Init Actions
-
-        clawMoving = false;
 //        extpos = 0.55;
         robot.IntakeClaw.setPosition(0);
         robot.Coax.setPosition(0.13);
@@ -72,12 +67,12 @@ public class TeleOpV2  extends LinearOpMode {
 
 
             if ((gamepad2Ex.getButton(GamepadKeys.Button.RIGHT_BUMPER) && (gamepad2Ex.getButton(GamepadKeys.Button.DPAD_UP)))){
-                scoremode = true;
+                scoreMode = true;
             } else if ((gamepad2Ex.getButton(GamepadKeys.Button.LEFT_BUMPER) && (gamepad2Ex.getButton(GamepadKeys.Button.DPAD_DOWN)))){
-                scoremode = false;
+                scoreMode = false;
             }
 
-            if (scoremode == true) {
+            if (scoreMode) {
                 telemetry.addData("Score Mode", "Specimen");
                 if (gamepad2Ex.getButton(GamepadKeys.Button.DPAD_LEFT)) {
                     robot.IntakeClaw.setPosition(0);
@@ -176,7 +171,7 @@ public class TeleOpV2  extends LinearOpMode {
 //                } else if (extpos < 0) {
 //                    extpos = 0;
 //                }
-            } else if (scoremode == false){
+            } else if (!scoreMode){
                 telemetry.addData("Score Mode", "Samples");
                 if (gamepad2Ex.getLeftY() > 0.01) { // Slides UP
                     robot.LiftLeft.set(-1);
